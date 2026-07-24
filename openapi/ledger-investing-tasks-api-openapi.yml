@@ -1,0 +1,137 @@
+openapi: 3.1.0
+info:
+  title: Ledger Analytics Cashflow Models Tasks API
+  version: 0.0.30
+  summary: Remote Bayesian actuarial compute over insurance loss triangles.
+  description: 'The Ledger Analytics API provides remote compute access to Bayesian actuarial models
+
+    for insurance loss triangles. It is operated by Korra Tech, LLC (d/b/a Korra), a wholly
+
+    owned SaaS subsidiary of Ledger Investing, Inc., and is currently in beta.
+
+
+    Loss triangles are uploaded and managed as first-class `triangle` resources. Development,
+
+    tail, forecast and cashflow models are then fit against a named triangle. Fitting and
+
+    prediction are executed as asynchronous remote tasks: the fit/predict call returns a task
+
+    handle which is polled at `/tasks/{task_id}` until it completes; predictions are written
+
+    back as new triangle resources.
+
+
+    IMPORTANT PROVENANCE NOTE: Ledger/Korra do not publish an OpenAPI description. This
+
+    document was DERIVED by API Evangelist from the request construction in the first-party,
+
+    open-source `ledger-analytics` Python client (github.com/LedgerInvesting/ledger-analytics,
+
+    MIT-licensed, Copyright 2025 Korra, LLC) and from the published documentation. Paths,
+
+    methods, auth, request-body field names, pagination parameters and error semantics are
+
+    taken verbatim from that client. Response schemas are partial — only the fields the
+
+    client actually reads are described. It is not an authoritative provider artifact.
+
+    '
+  contact:
+    name: Ledger Analytics
+    email: analytics@ledgerinvesting.com
+    url: https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/index.html
+  license:
+    name: MIT
+    url: https://github.com/LedgerInvesting/ledger-analytics/blob/main/LICENSE.txt
+servers:
+- url: https://api.korra.com/analytics
+  description: Production
+security:
+- ApiKeyAuth: []
+tags:
+- name: Tasks
+  description: Poll the status of asynchronous fit and predict tasks.
+paths:
+  /tasks/{task_id}:
+    parameters:
+    - name: task_id
+      in: path
+      required: true
+      description: Identifier of the asynchronous remote task.
+      schema:
+        type: string
+    get:
+      tags:
+      - Tasks
+      operationId: getTask
+      summary: Poll an asynchronous task
+      description: 'Polls a fit or predict task. While `task_response` is `null` the task is still
+
+        pending; once populated, `task_response.status` is `success` or carries an `error`.
+
+        '
+      responses:
+        '200':
+          description: Task state.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    NotFound:
+      description: Not found — the endpoint or resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      description: 'Error envelope. The client surfaces the decoded JSON body verbatim in the raised
+
+        HTTPError message; the exact field names are not documented by the provider.
+
+        '
+      additionalProperties: true
+    Task:
+      type: object
+      description: Asynchronous remote task state.
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+          description: Task status, e.g. `created`, `pending`, `terminated`.
+        task_response:
+          type:
+          - object
+          - 'null'
+          description: Null while the task is pending; populated on completion.
+          additionalProperties: true
+          properties:
+            status:
+              type: string
+              description: '`success` when the task completed successfully.'
+            error:
+              type:
+              - string
+              - 'null'
+              description: Failure detail when the task did not succeed.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'API key credential sent as `Authorization: Api-Key <API_KEY>`. Keys are requested by
+
+        emailing analytics@ledgerinvesting.com during the beta and managed at https://ldgr.app/api-keys.
+
+        The Python client reads the key from the `LEDGER_ANALYTICS_API_KEY` environment variable.
+
+        '
+externalDocs:
+  description: LedgerAnalytics Python documentation
+  url: https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/index.html

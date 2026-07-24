@@ -1,0 +1,361 @@
+openapi: 3.1.0
+info:
+  title: Ledger Analytics Cashflow Models API
+  version: 0.0.30
+  summary: Remote Bayesian actuarial compute over insurance loss triangles.
+  description: 'The Ledger Analytics API provides remote compute access to Bayesian actuarial models
+
+    for insurance loss triangles. It is operated by Korra Tech, LLC (d/b/a Korra), a wholly
+
+    owned SaaS subsidiary of Ledger Investing, Inc., and is currently in beta.
+
+
+    Loss triangles are uploaded and managed as first-class `triangle` resources. Development,
+
+    tail, forecast and cashflow models are then fit against a named triangle. Fitting and
+
+    prediction are executed as asynchronous remote tasks: the fit/predict call returns a task
+
+    handle which is polled at `/tasks/{task_id}` until it completes; predictions are written
+
+    back as new triangle resources.
+
+
+    IMPORTANT PROVENANCE NOTE: Ledger/Korra do not publish an OpenAPI description. This
+
+    document was DERIVED by API Evangelist from the request construction in the first-party,
+
+    open-source `ledger-analytics` Python client (github.com/LedgerInvesting/ledger-analytics,
+
+    MIT-licensed, Copyright 2025 Korra, LLC) and from the published documentation. Paths,
+
+    methods, auth, request-body field names, pagination parameters and error semantics are
+
+    taken verbatim from that client. Response schemas are partial — only the fields the
+
+    client actually reads are described. It is not an authoritative provider artifact.
+
+    '
+  contact:
+    name: Ledger Analytics
+    email: analytics@ledgerinvesting.com
+    url: https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/index.html
+  license:
+    name: MIT
+    url: https://github.com/LedgerInvesting/ledger-analytics/blob/main/LICENSE.txt
+servers:
+- url: https://api.korra.com/analytics
+  description: Production
+security:
+- ApiKeyAuth: []
+tags:
+- name: Cashflow Models
+  description: Cashflow models composed from a fitted development model and tail model.
+paths:
+  /cashflow-model:
+    get:
+      tags:
+      - Cashflow Models
+      operationId: listCashflowModels
+      summary: List cashflow models
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: Paginated list of cashflow models.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedModelList'
+    post:
+      tags:
+      - Cashflow Models
+      operationId: createCashflowModel
+      summary: Create a cashflow model
+      description: Composes a cashflow model from a previously fitted development model and tail model, referenced by name.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CashflowCreateRequest'
+      responses:
+        '201':
+          description: Cashflow model task accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModelTaskResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /cashflow-model-type:
+    get:
+      tags:
+      - Cashflow Models
+      operationId: listCashflowModelTypes
+      summary: List available cashflow model types
+      responses:
+        '200':
+          description: Available model types.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModelTypeList'
+  /cashflow-model/{id}:
+    parameters:
+    - $ref: '#/components/parameters/ResourceId'
+    get:
+      tags:
+      - Cashflow Models
+      operationId: getCashflowModel
+      summary: Retrieve a cashflow model
+      responses:
+        '200':
+          description: The cashflow model.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CashflowModel'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      tags:
+      - Cashflow Models
+      operationId: deleteCashflowModel
+      summary: Delete a cashflow model
+      responses:
+        '204':
+          description: Cashflow model deleted.
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /cashflow-model/{id}/predict:
+    parameters:
+    - $ref: '#/components/parameters/ResourceId'
+    post:
+      tags:
+      - Cashflow Models
+      operationId: predictCashflowModel
+      summary: Predict from a cashflow model
+      description: 'Runs cashflow prediction. `predict_config.initial_loss_name` optionally names an
+
+        initial loss triangle to seed the projection.
+
+        '
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CashflowPredictRequest'
+      responses:
+        '201':
+          description: Predict task accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PredictTaskResponse'
+components:
+  schemas:
+    PredictTaskResponse:
+      type: object
+      description: Response returned when a prediction is accepted.
+      properties:
+        predictions:
+          type: string
+          description: Identifier of the triangle the predictions will be written to.
+        modal_task:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Task identifier to poll at `/tasks/{task_id}`.
+    ModelTypeList:
+      type: object
+      description: Available model types for a model class.
+      additionalProperties: true
+    CashflowCreateRequest:
+      type: object
+      required:
+      - name
+      - dev_model_name
+      - tail_model_name
+      properties:
+        name:
+          type: string
+          description: Name to store the cashflow model under.
+        dev_model_name:
+          type: string
+          description: Name of the fitted development model to compose from.
+        tail_model_name:
+          type: string
+          description: Name of the fitted tail model to compose from.
+        model_config:
+          type: object
+          additionalProperties: true
+    CashflowPredictRequest:
+      allOf:
+      - $ref: '#/components/schemas/ModelPredictRequest'
+      - type: object
+        properties:
+          predict_config:
+            type: object
+            additionalProperties: true
+            properties:
+              initial_loss_name:
+                type: string
+                description: Name of an initial loss triangle to seed the cashflow projection.
+    CashflowModel:
+      type: object
+      description: A cashflow model composed from a development model and a tail model.
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        development_model:
+          type: string
+          description: Identifier of the source development model.
+        tail_model:
+          type: string
+          description: Identifier of the source tail model.
+    Pagination:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Total number of matching objects.
+        next:
+          type:
+          - string
+          - 'null'
+          description: URL of the next page, when present.
+        previous:
+          type:
+          - string
+          - 'null'
+          description: URL of the previous page, when present.
+    ModelTaskResponse:
+      type: object
+      description: Response returned when a fit is accepted.
+      properties:
+        model:
+          type: object
+          properties:
+            id:
+              type: string
+        modal_task:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Task identifier to poll at `/tasks/{task_id}`.
+    Error:
+      type: object
+      description: 'Error envelope. The client surfaces the decoded JSON body verbatim in the raised
+
+        HTTPError message; the exact field names are not documented by the provider.
+
+        '
+      additionalProperties: true
+    PaginatedModelList:
+      allOf:
+      - $ref: '#/components/schemas/Pagination'
+      - type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/components/schemas/Model'
+    Model:
+      type: object
+      description: A fitted model resource.
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        triangle:
+          type: object
+          description: The triangle the model was fit against.
+          properties:
+            name:
+              type: string
+        modal_task_info:
+          type: object
+          description: Remote task metadata, including the arguments the model was fit with.
+          properties:
+            task_args:
+              type: object
+              properties:
+                model_type:
+                  type: string
+                model_config:
+                  type: object
+                  additionalProperties: true
+    ModelPredictRequest:
+      type: object
+      required:
+      - triangle_name
+      properties:
+        triangle_name:
+          type: string
+          description: Name of the triangle to predict on.
+        prediction_name:
+          type: string
+          description: Optional name to store the resulting prediction triangle under.
+        overwrite:
+          type: boolean
+          default: false
+        predict_config:
+          type: object
+          description: Prediction configuration; may include `target_triangle` naming a triangle to predict onto.
+          additionalProperties: true
+          properties:
+            target_triangle:
+              type: string
+              description: Name of the triangle to project predictions onto.
+  parameters:
+    ResourceId:
+      name: id
+      in: path
+      required: true
+      description: Identifier of the resource.
+      schema:
+        type: string
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Maximum number of results to return per page.
+      schema:
+        type: integer
+        default: 25
+        minimum: 1
+  responses:
+    NotFound:
+      description: Not found — the endpoint or resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request — the payload was rejected.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'API key credential sent as `Authorization: Api-Key <API_KEY>`. Keys are requested by
+
+        emailing analytics@ledgerinvesting.com during the beta and managed at https://ldgr.app/api-keys.
+
+        The Python client reads the key from the `LEDGER_ANALYTICS_API_KEY` environment variable.
+
+        '
+externalDocs:
+  description: LedgerAnalytics Python documentation
+  url: https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/index.html

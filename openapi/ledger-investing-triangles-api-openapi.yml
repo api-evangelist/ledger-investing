@@ -1,0 +1,274 @@
+openapi: 3.1.0
+info:
+  title: Ledger Analytics Cashflow Models Triangles API
+  version: 0.0.30
+  summary: Remote Bayesian actuarial compute over insurance loss triangles.
+  description: 'The Ledger Analytics API provides remote compute access to Bayesian actuarial models
+
+    for insurance loss triangles. It is operated by Korra Tech, LLC (d/b/a Korra), a wholly
+
+    owned SaaS subsidiary of Ledger Investing, Inc., and is currently in beta.
+
+
+    Loss triangles are uploaded and managed as first-class `triangle` resources. Development,
+
+    tail, forecast and cashflow models are then fit against a named triangle. Fitting and
+
+    prediction are executed as asynchronous remote tasks: the fit/predict call returns a task
+
+    handle which is polled at `/tasks/{task_id}` until it completes; predictions are written
+
+    back as new triangle resources.
+
+
+    IMPORTANT PROVENANCE NOTE: Ledger/Korra do not publish an OpenAPI description. This
+
+    document was DERIVED by API Evangelist from the request construction in the first-party,
+
+    open-source `ledger-analytics` Python client (github.com/LedgerInvesting/ledger-analytics,
+
+    MIT-licensed, Copyright 2025 Korra, LLC) and from the published documentation. Paths,
+
+    methods, auth, request-body field names, pagination parameters and error semantics are
+
+    taken verbatim from that client. Response schemas are partial — only the fields the
+
+    client actually reads are described. It is not an authoritative provider artifact.
+
+    '
+  contact:
+    name: Ledger Analytics
+    email: analytics@ledgerinvesting.com
+    url: https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/index.html
+  license:
+    name: MIT
+    url: https://github.com/LedgerInvesting/ledger-analytics/blob/main/LICENSE.txt
+servers:
+- url: https://api.korra.com/analytics
+  description: Production
+security:
+- ApiKeyAuth: []
+tags:
+- name: Triangles
+  description: Upload, list, retrieve and delete insurance loss triangles.
+paths:
+  /triangle:
+    get:
+      tags:
+      - Triangles
+      operationId: listTriangles
+      summary: List triangles
+      description: Returns a paginated list of loss triangles belonging to the authenticated account.
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: Paginated list of triangles.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedTriangleList'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      tags:
+      - Triangles
+      operationId: createTriangle
+      summary: Create a triangle
+      description: 'Uploads a loss triangle. `triangle_data` is the Bermuda triangle dictionary
+
+        representation (`bermuda.Triangle.to_dict()`). Set `overwrite` to replace an
+
+        existing triangle of the same name — the upsert semantic used by the client''s
+
+        `get_or_create` / `get_or_update` helpers.
+
+        '
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TriangleCreateRequest'
+      responses:
+        '201':
+          description: Triangle created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Triangle'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /triangle/{id}:
+    parameters:
+    - $ref: '#/components/parameters/ResourceId'
+    get:
+      tags:
+      - Triangles
+      operationId: getTriangle
+      summary: Retrieve a triangle
+      description: 'Retrieves a triangle by id. For large triangles the response carries a `url`
+
+        field with a pre-signed download location instead of an inline `triangle_data`
+
+        payload; the client follows that URL and streams the content.
+
+        '
+      responses:
+        '200':
+          description: The triangle.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Triangle'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    delete:
+      tags:
+      - Triangles
+      operationId: deleteTriangle
+      summary: Delete a triangle
+      responses:
+        '204':
+          description: Triangle deleted.
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+components:
+  parameters:
+    ResourceId:
+      name: id
+      in: path
+      required: true
+      description: Identifier of the resource.
+      schema:
+        type: string
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Maximum number of results to return per page.
+      schema:
+        type: integer
+        default: 25
+        minimum: 1
+  responses:
+    Forbidden:
+      description: Forbidden — the API key does not have permission to perform this action.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Not found — the endpoint or resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request — the payload was rejected.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalServerError:
+      description: Internal server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Triangle:
+      type: object
+      description: An insurance loss triangle resource.
+      properties:
+        id:
+          type: string
+          description: Triangle identifier.
+        name:
+          type: string
+          description: Triangle name, unique per account.
+        triangle_data:
+          type: object
+          description: Bermuda triangle dictionary representation.
+          additionalProperties: true
+        url:
+          type:
+          - string
+          - 'null'
+          format: uri
+          description: Pre-signed download URL returned in place of inline data for large triangles.
+    Pagination:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Total number of matching objects.
+        next:
+          type:
+          - string
+          - 'null'
+          description: URL of the next page, when present.
+        previous:
+          type:
+          - string
+          - 'null'
+          description: URL of the previous page, when present.
+    Error:
+      type: object
+      description: 'Error envelope. The client surfaces the decoded JSON body verbatim in the raised
+
+        HTTPError message; the exact field names are not documented by the provider.
+
+        '
+      additionalProperties: true
+    PaginatedTriangleList:
+      allOf:
+      - $ref: '#/components/schemas/Pagination'
+      - type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/components/schemas/Triangle'
+    TriangleCreateRequest:
+      type: object
+      required:
+      - triangle_name
+      - triangle_data
+      properties:
+        triangle_name:
+          type: string
+          description: Name to store the triangle under.
+        triangle_data:
+          type: object
+          description: Bermuda triangle dictionary representation (`bermuda.Triangle.to_dict()`).
+          additionalProperties: true
+        overwrite:
+          type: boolean
+          default: false
+          description: Replace an existing triangle of the same name.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'API key credential sent as `Authorization: Api-Key <API_KEY>`. Keys are requested by
+
+        emailing analytics@ledgerinvesting.com during the beta and managed at https://ldgr.app/api-keys.
+
+        The Python client reads the key from the `LEDGER_ANALYTICS_API_KEY` environment variable.
+
+        '
+externalDocs:
+  description: LedgerAnalytics Python documentation
+  url: https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/index.html
