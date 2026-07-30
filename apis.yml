@@ -1,9 +1,30 @@
 aid: ledger-investing
 name: Ledger Investing
-description: 'Ledger Investing is a company surfaced as a portfolio company of accel and added to the
-  API Evangelist network as a stub for enrichment. Sector: insurance-tech. This profile is a lead awaiting
-  the enrichment pipeline.'
+description: 'Ledger Investing is a New York-based specialist broking and advisory firm for casualty
+  insurance-linked securities (ILS), connecting insurers, reinsurers and fronting carriers to institutional
+  capital markets investors. The firm originates casualty risk, structures off-balance-sheet solutions,
+  brokes and distributes the resulting securities, and supports secondary trading, having securitized
+  more than $2.5 billion of casualty premium across 170+ transactions since graduating Y Combinator in
+  2017. Its wholly owned SaaS subsidiary Korra Tech, LLC operates the Korra open data and analytics
+  platform for the reinsurance and ILS market, whose Ledger Analytics API gives actuaries programmatic
+  remote-compute access to Bayesian loss development, tail and forecasting models over insurance loss
+  triangles, alongside the open-source Bermuda (loss triangle manipulation) and BayesBlend (Bayesian
+  model stacking) Python libraries. Other subsidiaries include Ledger Capital Markets, LLC (SEC-registered
+  broker-dealer, FINRA/SIPC member) and Ledger Risk Markets, LLC (licensed reinsurance intermediary).'
 url: https://raw.githubusercontent.com/api-evangelist/ledger-investing/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://www.ledgerinvesting.com/apple-touch-icon.png
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
@@ -12,16 +33,214 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
 - Insurance Tech
-apis: []
+- Insurance
+- Reinsurance
+- Insurance-Linked Securities
+- Actuarial
+- Analytics
+- Capital Markets
+- Data Science
+- Financial Services
+apis:
+- aid: ledger-investing:ledger-investing-cashflow-models-api
+  name: Ledger Investing Cashflow Models API
+  description: Cashflow models composed from a fitted development model and tail model.
+  humanURL: https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/index.html
+  baseURL: https://api.korra.com/analytics/
+  tags:
+  - Cashflow Models
+  properties:
+  - type: OpenAPI
+    url: openapi/ledger-investing-cashflow-models-api-openapi.yml
+  - type: Documentation
+    url: https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/index.html
+  - type: APIReference
+    url: >-
+      https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/api/index.html
+  - type: GettingStarted
+    url: >-
+      https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/quickstart.html
+  - type: DataModel
+    url: data-model/ledger-investing-data-model.yml
+- aid: ledger-investing:ledger-investing-development-models-api
+  name: Ledger Investing Development Models API
+  description: >-
+    Bayesian loss development models (ChainLadder, TraditionalChainLadder, ManualATA, MeyersCRC, GMCL).
+  humanURL: https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/index.html
+  baseURL: https://api.korra.com/analytics/
+  tags:
+  - Development Models
+  properties:
+  - type: OpenAPI
+    url: openapi/ledger-investing-development-models-api-openapi.yml
+  - type: Documentation
+    url: https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/index.html
+  - type: APIReference
+    url: >-
+      https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/api/index.html
+  - type: GettingStarted
+    url: >-
+      https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/quickstart.html
+  - type: DataModel
+    url: data-model/ledger-investing-data-model.yml
+- aid: ledger-investing:ledger-investing-forecast-models-api
+  name: Ledger Investing Forecast Models API
+  description: Forecasting models (AR1, SSM, TraditionalGCC).
+  humanURL: https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/index.html
+  baseURL: https://api.korra.com/analytics/
+  tags:
+  - Forecast Models
+  properties:
+  - type: OpenAPI
+    url: openapi/ledger-investing-forecast-models-api-openapi.yml
+  - type: Documentation
+    url: https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/index.html
+  - type: APIReference
+    url: >-
+      https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/api/index.html
+  - type: GettingStarted
+    url: >-
+      https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/quickstart.html
+  - type: DataModel
+    url: data-model/ledger-investing-data-model.yml
+- aid: ledger-investing:ledger-investing-tail-models-api
+  name: Ledger Investing Tail Models API
+  description: Tail development models (GeneralizedBondy, Sherman, ClassicalPowerTransformTail).
+  humanURL: https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/index.html
+  baseURL: https://api.korra.com/analytics/
+  tags:
+  - Tail Models
+  properties:
+  - type: OpenAPI
+    url: openapi/ledger-investing-tail-models-api-openapi.yml
+  - type: Documentation
+    url: https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/index.html
+  - type: APIReference
+    url: >-
+      https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/api/index.html
+  - type: GettingStarted
+    url: >-
+      https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/quickstart.html
+  - type: DataModel
+    url: data-model/ledger-investing-data-model.yml
+- aid: ledger-investing:ledger-investing-tasks-api
+  name: Ledger Investing Tasks API
+  description: Poll the status of asynchronous fit and predict tasks.
+  humanURL: https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/index.html
+  baseURL: https://api.korra.com/analytics/
+  tags:
+  - Tasks
+  properties:
+  - type: OpenAPI
+    url: openapi/ledger-investing-tasks-api-openapi.yml
+  - type: Documentation
+    url: https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/index.html
+  - type: APIReference
+    url: >-
+      https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/api/index.html
+  - type: GettingStarted
+    url: >-
+      https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/quickstart.html
+  - type: DataModel
+    url: data-model/ledger-investing-data-model.yml
+- aid: ledger-investing:ledger-investing-triangles-api
+  name: Ledger Investing Triangles API
+  description: Upload, list, retrieve and delete insurance loss triangles.
+  humanURL: https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/index.html
+  baseURL: https://api.korra.com/analytics/
+  tags:
+  - Triangles
+  properties:
+  - type: OpenAPI
+    url: openapi/ledger-investing-triangles-api-openapi.yml
+  - type: Documentation
+    url: https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/index.html
+  - type: APIReference
+    url: >-
+      https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/api/index.html
+  - type: GettingStarted
+    url: >-
+      https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/quickstart.html
+  - type: DataModel
+    url: data-model/ledger-investing-data-model.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: AgenticAccess
+  url: agentic-access/ledger-investing-agentic-access.yml
 - type: Website
   url: https://www.ledgerinvesting.com/
+- type: DeveloperPortal
+  url: https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/index.html
+- type: Documentation
+  url: https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/index.html
+- type: APIReference
+  url: https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/api/index.html
+- type: GettingStarted
+  url: https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/quickstart.html
+- type: Pricing
+  url: https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/pricing.html
+- type: SignUp
+  url: https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/apikeys.html
+- type: Support
+  url: https://www.ledgerinvesting.com/contact-us
+- type: Blog
+  url: https://www.ledgerinvesting.com/news
+- type: GitHubOrganization
+  url: https://github.com/LedgerInvesting
+- type: SourceCode
+  url: https://github.com/LedgerInvesting/ledger-analytics
+- type: TermsOfService
+  url: https://www.ledgerinvesting.com/terms-of-use
+- type: PrivacyPolicy
+  url: https://www.ledgerinvesting.com/privacy
+- type: Compliance
+  url: https://trust.korra.com
+- type: Security
+  url: https://trust.korra.com
+- type: LinkedIn
+  url: https://www.linkedin.com/company/ledger-investing
+- type: Twitter
+  url: https://x.com/LedgerInvesting
+- type: Packages
+  url: packages/ledger-investing-packages.yml
+- type: SDKs
+  url: packages/ledger-investing-packages.yml
+- type: Authentication
+  url: authentication/ledger-investing-authentication.yml
+- type: Conventions
+  url: conventions/ledger-investing-conventions.yml
+- type: ErrorCatalog
+  url: errors/ledger-investing-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/ledger-investing-lifecycle.yml
+- type: Conformance
+  url: conformance/ledger-investing-conformance.yml
+- type: WellKnown
+  url: well-known/ledger-investing-well-known.yml
+- type: DomainSecurity
+  url: security/ledger-investing-domain-security.yml
+- type: VulnerabilityDisclosure
+  url: security/ledger-investing-vulnerability-disclosure.yml
+- type: TrustCenter
+  url: security/ledger-investing-trust-center.yml
+- type: MCPServer
+  url: mcp/ledger-investing-mcp.yml
+- type: LLMsTxt
+  url: llms/ledger-investing-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
+- type: ChangeLog
+  url: changelog/ledger-investing-changelog.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
