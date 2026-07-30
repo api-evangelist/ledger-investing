@@ -1,0 +1,66 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/ledger-investing-analytics-openapi.yml
+api: Ledger Analytics API
+notes: >-
+  Derived from the schemas and id-reference fields in the derived OpenAPI. The Analytics API
+  has a small, deliberately uniform object graph: a Triangle is the data resource, four model
+  classes are fit against a named Triangle, every fit or prediction spawns a Task, and every
+  prediction produces a new Triangle. Cross-resource references are made by NAME on write and
+  by id on read.
+entities:
+- name: Triangle
+  description: An insurance loss triangle — the unit of data uploaded to and returned from the API.
+  identity: {field: id, type: opaque string}
+  natural_key: name
+  interchange_format: Bermuda triangle dictionary (bermuda-ledger)
+  fields: [id, name, triangle_data, url]
+  operations: [createTriangle, listTriangles, getTriangle, deleteTriangle]
+- name: DevelopmentModel
+  description: A fitted Bayesian loss development model.
+  model_types: [ChainLadder, TraditionalChainLadder, ManualATA, MeyersCRC, GMCL]
+  identity: {field: id, type: opaque string}
+  natural_key: name
+  operations: [fitDevelopmentModel, listDevelopmentModels, getDevelopmentModel, predictDevelopmentModel, terminateDevelopmentModel, deleteDevelopmentModel]
+- name: TailModel
+  description: A fitted tail development model.
+  model_types: [GeneralizedBondy, Sherman, ClassicalPowerTransformTail]
+  identity: {field: id, type: opaque string}
+  natural_key: name
+  operations: [fitTailModel, listTailModels, getTailModel, predictTailModel, terminateTailModel, deleteTailModel]
+- name: ForecastModel
+  description: A fitted forecasting model for ultimate loss projection.
+  model_types: [AR1, SSM, TraditionalGCC]
+  identity: {field: id, type: opaque string}
+  natural_key: name
+  operations: [fitForecastModel, listForecastModels, getForecastModel, predictForecastModel, terminateForecastModel, deleteForecastModel]
+- name: CashflowModel
+  description: A cashflow model composed from one fitted development model and one fitted tail model.
+  identity: {field: id, type: opaque string}
+  natural_key: name
+  operations: [createCashflowModel, listCashflowModels, getCashflowModel, predictCashflowModel, deleteCashflowModel]
+- name: Task
+  description: An asynchronous remote compute task representing a fit or a prediction run.
+  identity: {field: id, type: opaque string}
+  states: [created, pending, terminated, finished]
+  operations: [getTask]
+- name: ModelType
+  description: A model type available within a model class, discovered per class.
+  operations: [listDevelopmentModelTypes, listTailModelTypes, listForecastModelTypes, listCashflowModelTypes]
+relationships:
+- {from: DevelopmentModel, to: Triangle, kind: belongs_to, via: triangle_name, note: the triangle the model was fit against}
+- {from: TailModel, to: Triangle, kind: belongs_to, via: triangle_name}
+- {from: ForecastModel, to: Triangle, kind: belongs_to, via: triangle_name}
+- {from: DevelopmentModel, to: Task, kind: has_many, via: modal_task.id}
+- {from: TailModel, to: Task, kind: has_many, via: modal_task.id}
+- {from: ForecastModel, to: Task, kind: has_many, via: modal_task.id}
+- {from: CashflowModel, to: DevelopmentModel, kind: belongs_to, via: development_model}
+- {from: CashflowModel, to: TailModel, kind: belongs_to, via: tail_model}
+- {from: CashflowModel, to: Task, kind: has_many, via: modal_task.id}
+- {from: Task, to: Triangle, kind: has_one, via: predictions, note: a completed predict task writes its output to a new triangle id}
+- {from: DevelopmentModel, to: ModelType, kind: belongs_to, via: model_type}
+- {from: TailModel, to: ModelType, kind: belongs_to, via: model_type}
+- {from: ForecastModel, to: ModelType, kind: belongs_to, via: model_type}
+- {from: DevelopmentModel, to: Triangle, kind: has_many, via: predict target_triangle, note: predictions produce new triangles}
+id_prefixes: none published
+render: null

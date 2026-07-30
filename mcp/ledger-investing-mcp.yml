@@ -1,0 +1,48 @@
+generated: '2026-07-19'
+method: derived
+status: candidate
+source: openapi/ledger-investing-analytics-openapi.yml
+notes: >-
+  Ledger Investing / Korra publish no hosted or remote MCP server. Searched the docs, the
+  LedgerInvesting GitHub organization (12 public repos), npm under @modelcontextprotocol and
+  the public MCP registries — no result. The tool list below is a CANDIDATE derived from the
+  operations in the derived OpenAPI, one tool per operationId, so an agent surface can be
+  stood up against the API. Not a provider claim.
+server:
+  name: ledger-analytics
+  transport: null
+  url: null
+  auth: 'API key header — Authorization: Api-Key <LEDGER_ANALYTICS_API_KEY>'
+tools:
+- {name: list_triangles, description: List loss triangles in the account, source_operation: 'openapi/ledger-investing-analytics-openapi.yml#listTriangles'}
+- {name: create_triangle, description: Upload a loss triangle, source_operation: 'openapi/ledger-investing-analytics-openapi.yml#createTriangle'}
+- {name: get_triangle, description: Retrieve a loss triangle by id, source_operation: 'openapi/ledger-investing-analytics-openapi.yml#getTriangle'}
+- {name: delete_triangle, description: Delete a loss triangle, source_operation: 'openapi/ledger-investing-analytics-openapi.yml#deleteTriangle'}
+- {name: list_development_models, description: List fitted development models, source_operation: 'openapi/ledger-investing-analytics-openapi.yml#listDevelopmentModels'}
+- {name: fit_development_model, description: Fit a Bayesian loss development model against a triangle, source_operation: 'openapi/ledger-investing-analytics-openapi.yml#fitDevelopmentModel'}
+- {name: list_development_model_types, description: List available development model types, source_operation: 'openapi/ledger-investing-analytics-openapi.yml#listDevelopmentModelTypes'}
+- {name: get_development_model, description: Retrieve a development model, source_operation: 'openapi/ledger-investing-analytics-openapi.yml#getDevelopmentModel'}
+- {name: predict_development_model, description: Predict from a fitted development model, source_operation: 'openapi/ledger-investing-analytics-openapi.yml#predictDevelopmentModel'}
+- {name: terminate_development_model, description: Terminate a running development model task, source_operation: 'openapi/ledger-investing-analytics-openapi.yml#terminateDevelopmentModel'}
+- {name: delete_development_model, description: Delete a development model, source_operation: 'openapi/ledger-investing-analytics-openapi.yml#deleteDevelopmentModel'}
+- {name: list_tail_models, description: List fitted tail models, source_operation: 'openapi/ledger-investing-analytics-openapi.yml#listTailModels'}
+- {name: fit_tail_model, description: Fit a tail development model, source_operation: 'openapi/ledger-investing-analytics-openapi.yml#fitTailModel'}
+- {name: list_tail_model_types, description: List available tail model types, source_operation: 'openapi/ledger-investing-analytics-openapi.yml#listTailModelTypes'}
+- {name: get_tail_model, description: Retrieve a tail model, source_operation: 'openapi/ledger-investing-analytics-openapi.yml#getTailModel'}
+- {name: predict_tail_model, description: Predict from a fitted tail model, source_operation: 'openapi/ledger-investing-analytics-openapi.yml#predictTailModel'}
+- {name: terminate_tail_model, description: Terminate a running tail model task, source_operation: 'openapi/ledger-investing-analytics-openapi.yml#terminateTailModel'}
+- {name: delete_tail_model, description: Delete a tail model, source_operation: 'openapi/ledger-investing-analytics-openapi.yml#deleteTailModel'}
+- {name: list_forecast_models, description: List fitted forecast models, source_operation: 'openapi/ledger-investing-analytics-openapi.yml#listForecastModels'}
+- {name: fit_forecast_model, description: Fit a forecasting model, source_operation: 'openapi/ledger-investing-analytics-openapi.yml#fitForecastModel'}
+- {name: list_forecast_model_types, description: List available forecast model types, source_operation: 'openapi/ledger-investing-analytics-openapi.yml#listForecastModelTypes'}
+- {name: get_forecast_model, description: Retrieve a forecast model, source_operation: 'openapi/ledger-investing-analytics-openapi.yml#getForecastModel'}
+- {name: predict_forecast_model, description: Predict from a fitted forecast model, source_operation: 'openapi/ledger-investing-analytics-openapi.yml#predictForecastModel'}
+- {name: terminate_forecast_model, description: Terminate a running forecast model task, source_operation: 'openapi/ledger-investing-analytics-openapi.yml#terminateForecastModel'}
+- {name: delete_forecast_model, description: Delete a forecast model, source_operation: 'openapi/ledger-investing-analytics-openapi.yml#deleteForecastModel'}
+- {name: list_cashflow_models, description: List cashflow models, source_operation: 'openapi/ledger-investing-analytics-openapi.yml#listCashflowModels'}
+- {name: create_cashflow_model, description: Compose a cashflow model from a development model and a tail model, source_operation: 'openapi/ledger-investing-analytics-openapi.yml#createCashflowModel'}
+- {name: list_cashflow_model_types, description: List available cashflow model types, source_operation: 'openapi/ledger-investing-analytics-openapi.yml#listCashflowModelTypes'}
+- {name: get_cashflow_model, description: Retrieve a cashflow model, source_operation: 'openapi/ledger-investing-analytics-openapi.yml#getCashflowModel'}
+- {name: predict_cashflow_model, description: Predict from a cashflow model, source_operation: 'openapi/ledger-investing-analytics-openapi.yml#predictCashflowModel'}
+- {name: delete_cashflow_model, description: Delete a cashflow model, source_operation: 'openapi/ledger-investing-analytics-openapi.yml#deleteCashflowModel'}
+- {name: get_task, description: Poll the status of an asynchronous fit or predict task, source_operation: 'openapi/ledger-investing-analytics-openapi.yml#getTask'}

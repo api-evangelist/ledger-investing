@@ -1,0 +1,21 @@
+generated: '2026-07-19'
+method: generated
+source: openapi/ledger-investing-analytics-openapi.yml
+notes: >-
+  Ledger Investing / Korra publish no AGENTS.md or provider-authored agent skills — searched
+  the docs and all 12 public repos in the LedgerInvesting GitHub organization. These skills
+  were generated from the derived OpenAPI plus the captured conventions and error artifacts.
+  Every operationId referenced exists verbatim in openapi/ledger-investing-analytics-openapi.yml.
+skills:
+- file: ledger-investing-fit-loss-development-model.md
+  name: Fit a loss development model on a Ledger Analytics triangle
+  api: openapi/ledger-investing-analytics-openapi.yml
+  operations: [createTriangle, listTriangles, listDevelopmentModelTypes, fitDevelopmentModel, getTask, getDevelopmentModel]
+- file: ledger-investing-predict-and-retrieve-triangle.md
+  name: Predict from a fitted Ledger Analytics model and retrieve the result triangle
+  api: openapi/ledger-investing-analytics-openapi.yml
+  operations: [listDevelopmentModels, getDevelopmentModel, predictDevelopmentModel, predictTailModel, predictForecastModel, getTask, getTriangle]
+- file: ledger-investing-build-cashflow-model.md
+  name: Build a Ledger Analytics cashflow model from a development and tail model
+  api: openapi/ledger-investing-analytics-openapi.yml
+  operations: [fitDevelopmentModel, fitTailModel, getTask, createCashflowModel, getCashflowModel, predictCashflowModel, getTriangle]

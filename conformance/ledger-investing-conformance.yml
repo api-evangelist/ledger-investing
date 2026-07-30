@@ -1,0 +1,71 @@
+generated: '2026-07-19'
+method: searched
+source: >-
+  https://trust.korra.com and openapi/ledger-investing-analytics-openapi.yml
+api: Ledger Analytics API
+standards:
+- id: soc2-type1
+  conforms: true
+  evidence: 'SOC 2 Type 1 listed under Compliance in the Korra Trust Center (https://trust.korra.com); report access-gated.'
+- id: soc2-type2
+  conforms: true
+  evidence: 'SOC 2 Type 2 listed under Compliance in the Korra Trust Center (https://trust.korra.com); report access-gated.'
+- id: iso-27001
+  conforms: false
+  evidence: Not listed in the trust center.
+- id: pci-dss
+  conforms: false
+  evidence: Not listed; the Analytics API handles actuarial loss data, not cardholder data.
+- id: hipaa
+  conforms: false
+  evidence: Not listed in the trust center.
+- id: fedramp
+  conforms: false
+  evidence: Not listed in the trust center.
+- id: gdpr
+  conforms: false
+  evidence: >-
+    No GDPR statement surfaced in the trust center compliance section; a privacy policy is
+    published at https://www.ledgerinvesting.com/privacy.
+- id: oauth2
+  conforms: false
+  evidence: No oauth2 securityScheme; authentication is a single header API key.
+- id: openid-connect
+  conforms: false
+  evidence: No /.well-known/openid-configuration on any host (all 404).
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors are plain HTTP status codes with an undocumented JSON body; no application/problem+json.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on all probed hosts.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: No Sunset or Deprecation header support documented.
+- id: json-api
+  conforms: false
+  evidence: Plain application/json; no JSON:API media type or envelope.
+- id: pagination
+  conforms: true
+  evidence: 'Limit-and-count pagination with a count/next/previous/results envelope on all list operations.'
+- id: idempotency
+  conforms: false
+  evidence: >-
+    No Idempotency-Key header contract. Name-scoped `overwrite` upsert is offered instead;
+    see conventions/ledger-investing-conventions.yml.
+- id: openapi
+  conforms: false
+  evidence: >-
+    The provider publishes no OpenAPI description. The spec in openapi/ was derived by API
+    Evangelist from the first-party open-source Python client.
+- id: asyncapi
+  conforms: false
+  evidence: No event, streaming or webhook surface; asynchronous work is polled, not pushed.
+regulatory_context:
+  notes: >-
+    Ledger Investing operates regulated subsidiaries whose oversight is corporate rather than
+    API-level: Ledger Capital Markets, LLC is an SEC-registered broker-dealer and a member of
+    FINRA and SIPC; Ledger Risk Markets, LLC is a licensed reinsurance intermediary; Ledger Re
+    SPC is a Cayman Islands Class (B)(iii) licensed (re)insurer; Ledger ILS Services Ltd. is a
+    Cayman Islands licensed services provider.
+  source: https://trust.korra.com

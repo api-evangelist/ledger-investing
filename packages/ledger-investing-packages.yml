@@ -1,0 +1,54 @@
+generated: '2026-07-19'
+method: searched
+source: https://pypi.org/project/ledger-analytics/
+notes: >-
+  Registries probed: PyPI, npm, Maven Central, NuGet, pkg.go.dev, RubyGems, Packagist,
+  crates.io. Only Python packages found; all three are published from the LedgerInvesting
+  GitHub organization. Copyright on ledger-analytics is Korra, LLC — the Ledger Investing
+  SaaS subsidiary that operates the Analytics API.
+packages:
+- language: python
+  registry: pypi
+  name: ledger-analytics
+  version: 0.0.30
+  url: https://pypi.org/project/ledger-analytics/
+  install: pip install ledger-analytics
+  repository: https://github.com/LedgerInvesting/ledger-analytics
+  documentation: https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/latest/
+  description: The Python interface to Korra's analytics infrastructure — the client for the Ledger Analytics API.
+  license: MIT
+  requires_python: '>3.10'
+  official: true
+  kind: sdk
+- language: python
+  registry: pypi
+  name: bermuda-ledger
+  version: 2.3.0
+  url: https://pypi.org/project/bermuda-ledger/
+  install: pip install bermuda-ledger
+  repository: https://github.com/LedgerInvesting/bermuda-ledger
+  documentation: https://ledger-investing-bermuda-ledger.readthedocs-hosted.com/en/latest/
+  description: A module for the representation and manipulation of insurance loss triangles; the data model the Analytics API consumes.
+  official: true
+  kind: library
+- language: python
+  registry: pypi
+  name: bayesblend
+  version: 0.0.8
+  url: https://pypi.org/project/bayesblend/
+  install: pip install bayesblend
+  repository: https://github.com/LedgerInvesting/bayesblend
+  description: >-
+    Combine predictions from multiple Bayesian models using (pseudo) Bayesian model averaging,
+    hierarchical stacking and related techniques.
+  official: true
+  kind: library
+registries_probed:
+- {registry: pypi, found: 3}
+- {registry: npm, found: 0}
+- {registry: maven-central, found: 0}
+- {registry: nuget, found: 0}
+- {registry: pkg.go.dev, found: 0}
+- {registry: rubygems, found: 0}
+- {registry: packagist, found: 0}
+- {registry: crates.io, found: 0}

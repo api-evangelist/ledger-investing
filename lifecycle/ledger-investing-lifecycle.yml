@@ -1,0 +1,49 @@
+generated: '2026-07-19'
+method: searched
+source: https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/index.html
+api: Ledger Analytics API
+maturity:
+  stage: beta
+  announced: https://www.ledgerinvesting.com/news/ledger-analytics-api
+  statement: >-
+    "LedgerAnalytics is currently in beta phase, and is looking for beta testers to try our
+    models." — ledger-analytics README. The provider is actively recruiting beta users at
+    analytics@ledgerinvesting.com.
+versioning:
+  scheme: none-in-path
+  api_version: null
+  client_version: 0.0.30
+  client_registry: https://pypi.org/project/ledger-analytics/
+  docs_channels:
+  - {channel: stable, url: 'https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/'}
+  - {channel: latest, url: 'https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/latest/'}
+  notes: >-
+    No version segment appears in the base URL and no version header is documented. Read-the-Docs
+    stable/latest channels and the PyPI client version are the only version signals published.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  deprecation_header: false
+  notes: >-
+    No deprecation or sunset policy is published. The client source carries a forward-looking
+    note that fit "will likely be superseded by having separate create and fit API endpoints",
+    which is the only change signal the provider has published.
+deprecated_operations: []
+sla:
+  url: null
+  uptime_target: null
+  notes: >-
+    No public SLA. A "Service-Level Agreement" document is listed under Legal in the Korra
+    Trust Center (https://trust.korra.com) but is access-gated.
+status_page: null
+status_page_notes: >-
+  No public status page found — status.ledgerinvesting.com and status.korra.com do not resolve.
+  The Korra Trust Center lists "Status Monitoring" as an internal infrastructure control only.
+  No StatusPage pointer is wired.
+support:
+  contact_email: analytics@ledgerinvesting.com
+  general_contact: https://www.ledgerinvesting.com/contact-us
+  issue_tracker: https://github.com/LedgerInvesting/ledger-analytics/issues
+pricing:
+  url: https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/pricing.html
+  statement: Free during the beta period; contact analytics@ledgerinvesting.com for more information.

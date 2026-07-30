@@ -1,0 +1,24 @@
+{
+  "provider": "ledger-investing",
+  "sources": [
+    "ledger-investing-cashflow-models-api-openapi.yml",
+    "ledger-investing-development-models-api-openapi.yml",
+    "ledger-investing-forecast-models-api-openapi.yml",
+    "ledger-investing-tail-models-api-openapi.yml",
+    "ledger-investing-tasks-api-openapi.yml",
+    "ledger-investing-triangles-api-openapi.yml"
+  ],
+  "outputs": [
+    "ledger-investing-cashflow-models-api-openapi.yml",
+    "ledger-investing-development-models-api-openapi.yml",
+    "ledger-investing-forecast-models-api-openapi.yml",
+    "ledger-investing-tail-models-api-openapi.yml",
+    "ledger-investing-tasks-api-openapi.yml",
+    "ledger-investing-triangles-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -1,0 +1,85 @@
+generated: '2026-07-19'
+method: derived
+source: >-
+  openapi/ledger-investing-analytics-openapi.yml plus the first-party open-source client
+  https://github.com/LedgerInvesting/ledger-analytics
+docs: https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/quickstart.html
+api: Ledger Analytics API
+authentication:
+  style: api-key
+  header: Authorization
+  format: 'Api-Key <API_KEY>'
+  see: authentication/ledger-investing-authentication.yml
+idempotency:
+  idempotency_key_header: null
+  supported: false
+  notes: >-
+    The API publishes no Idempotency-Key contract and no request-replay semantics. What it
+    does offer is name-scoped upsert: triangle and model creation accept an `overwrite`
+    boolean, and the client layers get_or_create / get_or_update helpers on top of it that
+    reconcile by resource NAME and configuration rather than by a client-supplied request key.
+    Retrying a create without `overwrite: true` against an existing name is rejected rather
+    than deduplicated. Recorded as unsupported deliberately — no Idempotency pointer is wired.
+  upsert:
+    field: overwrite
+    scope: resource name, per account
+    applies_to: [createTriangle, fitDevelopmentModel, fitTailModel, fitForecastModel, predict operations]
+    client_helpers: [get_or_create, get_or_update]
+pagination:
+  style: limit-and-count
+  request_params:
+  - {name: limit, in: query, default: 25, description: maximum results per page}
+  response_fields:
+    total: count
+    items: results
+    next: next
+    previous: previous
+  notes: >-
+    Django-REST-Framework-shaped envelope. The client has no cursor loop — it reads `count`
+    from a limit=1 probe and then re-requests with limit=count to page everything at once.
+async_execution:
+  model: submit-then-poll
+  submit: fit and predict operations return 2xx with modal_task.id
+  poll_operation: GET /tasks/{task_id}
+  pending_signal: task_response is null
+  success_signal: task_response.status == "success"
+  failure_signal: task_response.error
+  cancel: POST /{model-class}/{id}/terminate
+  client_default_timeout_seconds: 300
+  terminate_timeout_seconds: 60
+  client_flag: 'asynchronous=True returns the handle immediately instead of blocking on the poll loop'
+large_payloads:
+  pattern: pre-signed redirect
+  description: >-
+    A triangle GET may return a `url` field carrying a pre-signed download location instead of
+    inline `triangle_data`; the client follows it and streams the content in 1KB chunks.
+resource_naming:
+  identity: resources are addressed by opaque `id` but looked up by human-assigned `name`
+  uniqueness: name is unique per account per resource class
+  model_class_slugs: [triangle, development-model, tail-model, forecast-model, cashflow-model]
+  type_discovery: 'GET /{model-class}-type lists the model types available for a class'
+metadata:
+  supported: false
+  notes: No generic metadata / custom-field surface is documented.
+field_expansion:
+  supported: false
+request_tracing:
+  request_id_header: null
+  notes: No request-id or correlation header is documented. Async work is instead traced by modal_task.id.
+versioning:
+  scheme: none-in-path
+  notes: >-
+    The base URL carries no version segment (https://api.korra.com/analytics/). The client
+    package version (ledger-analytics on PyPI) is the practical version signal.
+  see: lifecycle/ledger-investing-lifecycle.yml
+error_envelope:
+  problem_json: false
+  description: HTTP status plus an undocumented JSON body; see errors/ledger-investing-problem-types.yml
+  see: errors/ledger-investing-problem-types.yml
+rate_limits:
+  documented: false
+  notes: No published rate limits, quotas or rate-limit response headers. The API is free during beta.
+content_type: application/json
+data_model:
+  see: data-model/ledger-investing-data-model.yml
+  interchange_format: Bermuda triangle dictionary (bermuda-ledger Python package)

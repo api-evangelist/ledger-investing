@@ -1,0 +1,60 @@
+generated: '2026-07-19'
+method: derived
+source: >-
+  openapi/ledger-investing-analytics-openapi.yml and the status-code handling in
+  Requester._catch_status of the first-party client
+  (https://github.com/LedgerInvesting/ledger-analytics/blob/main/ledger_analytics/requester.py)
+format: json
+notes: >-
+  The Ledger Analytics API does NOT use RFC 9457 problem+json. The client decodes the JSON
+  body of an error response and re-raises it verbatim inside a requests.HTTPError message;
+  the provider does not document an error envelope schema or a stable error-code registry.
+  The statuses below are the ones the client explicitly branches on. Task-level failures are
+  NOT surfaced as HTTP errors — a fit or predict call returns 2xx and the failure appears in
+  the polled task body.
+envelope:
+  transport: HTTP status code
+  body: JSON object, shape undocumented; falls back to plain text
+  problem_json: false
+problems:
+- status: 400
+  title: Bad request
+  description: The request payload was rejected — most often a malformed triangle payload or an invalid model_config.
+  client_message: '400: Bad request, {message}.'
+  source_operation: openapi/ledger-investing-analytics-openapi.yml#createTriangle
+- status: 403
+  title: Forbidden
+  description: The API key does not have permission to perform this action.
+  client_message: '403: You do not have permissions to perform this action, {message}'
+  remediation: Verify the Authorization header uses the `Api-Key <key>` form and that the key is active.
+  source_operation: openapi/ledger-investing-analytics-openapi.yml#listTriangles
+- status: 404
+  title: Not found
+  description: The endpoint or resource does not exist.
+  client_message: '404: Cannot find the given endpoint, {message}.'
+  remediation: Check the host and resource id; the client also raises a local ValueError when no triangle or model matches a given name.
+  source_operation: openapi/ledger-investing-analytics-openapi.yml#getTriangle
+- status: 500
+  title: Internal server error
+  description: An unhandled error occurred in the analytics service.
+  client_message: '500: Internal server error, {message}'
+  source_operation: openapi/ledger-investing-analytics-openapi.yml#fitDevelopmentModel
+- status: 200
+  title: Undecodable success body
+  description: >-
+    A 200 whose body cannot be decoded as JSON is treated as an error by the client, on the
+    assumption the configured host is wrong.
+  client_message: "200: JSON response can't be decoded (likely empty). Check your host."
+task_failures:
+  description: >-
+    Asynchronous fit/predict failures are reported in the polled task body, not as an HTTP
+    error status. Poll /tasks/{task_id}; when task_response.status is not "success" the
+    task_response.error field carries the failure detail.
+  poll_operation: openapi/ledger-investing-analytics-openapi.yml#getTask
+  success_value: success
+  error_field: task_response.error
+client_side_errors:
+- {condition: no API key supplied and LEDGER_ANALYTICS_API_KEY unset, error: 'ValueError: Must pass in a valid `api_key` or set the `LEDGER_ANALYTICS_API_KEY` environment variable.'}
+- {condition: no triangle or model matches the requested name or id, error: 'ValueError: No triangle/model found with name ...'}
+- {condition: fit or predict exceeds the timeout (default 300s), error: task polling loop exits without a task_response}
+- {condition: terminate does not take effect within 60s, error: 'TimeoutError: Could not terminate within 60 seconds.'}

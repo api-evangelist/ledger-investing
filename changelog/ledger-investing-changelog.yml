@@ -1,0 +1,29 @@
+generated: '2026-07-19'
+method: searched
+source: https://pypi.org/project/ledger-analytics/
+notes: >-
+  Ledger/Korra publish no dated narrative changelog or release-notes page for the Ledger
+  Analytics API, and the GitHub repository has no tagged releases with notes. The only real
+  dated version history the provider publishes is the PyPI release history of the first-party
+  ledger-analytics client, captured verbatim below (recent window). Version numbers and dates
+  are real; no release highlights are recorded because none are published.
+scheme: pypi-client-releases
+versioned_artifact: ledger-analytics (PyPI)
+current_version: 0.0.30
+current_version_date: '2025-12-19'
+api_versioning: none-in-path
+entries:
+- {version: 0.0.30, date: '2025-12-19'}
+- {version: 0.0.29, date: '2025-10-01'}
+- {version: 0.0.28, date: '2025-08-07'}
+- {version: 0.0.27, date: '2025-07-02'}
+- {version: 0.0.26, date: '2025-06-03'}
+- {version: 0.0.25, date: '2025-05-14'}
+- {version: 0.0.24, date: '2025-05-14'}
+- {version: 0.0.23, date: '2025-04-28'}
+- {version: 0.0.22, date: '2025-04-23'}
+- {version: 0.0.21, date: '2025-04-09'}
+gaps:
+- No dated API changelog page.
+- No GitHub releases with notes on LedgerInvesting/ledger-analytics.
+- No breaking-change or additions classification published.

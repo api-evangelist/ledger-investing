@@ -1,0 +1,66 @@
+generated: '2026-07-19'
+method: searched
+probe: true
+url: https://trust.korra.com
+platform: SafeBase
+operator: >-
+  Korra Tech, LLC (d/b/a Korra), a wholly owned subsidiary of Ledger Investing, Inc. The
+  trust center covers the Korra platform, which operates the Ledger Analytics API.
+overview: >-
+  "Korra is an open data and analytics platform built to bring transparency, efficiency, and
+  smarter decision-making to the reinsurance and insurance-linked securities (ILS) market...
+  This Trust Center gives you visibility into our security controls, compliance posture, and
+  privacy practices."
+certifications:
+- SOC 2 Type 1
+- SOC 2 Type 2
+documents:
+- {name: SOC 2 Type 1, category: compliance, access: gated}
+- {name: SOC 2 Type 2, category: compliance, access: gated}
+- {name: Pentest Report, category: reports, access: gated}
+- {name: SOC 1 Report, category: reports, access: gated}
+- {name: Network Diagram, category: reports, access: gated}
+- {name: Master Services Agreement, category: legal, access: gated}
+- {name: Service-Level Agreement, category: legal, access: gated}
+- {name: Cyber Insurance, category: legal, access: gated}
+control_families:
+- name: Product Security
+  controls: [Audit Logging, Data Security, Integrations]
+- name: Data Security
+  controls: [Access Monitoring, Data Backups, Encryption-at-rest]
+- name: App Security
+  controls: [Responsible Disclosure, Application Penetration Testing, Code Analysis]
+- name: Access Control
+  controls: [Access Log Management, Data Access, Internal Single-Sign-On (SSO)]
+- name: Infrastructure
+  controls: [Status Monitoring, Amazon Web Services, BC/DR]
+- name: Endpoint Security
+  controls: [Anti-Malware, Disk Encryption, Endpoint Detection & Response]
+- name: Network Security
+  controls: [Data Loss Prevention, Firewall, IDS/IPS]
+- name: Corporate Security
+  controls: [Asset Management Practices, Employee Training, Incident Response]
+- name: Incident Response
+  controls: [Designated Response Personnel, Incident Reporting Process]
+- name: Risk Management
+  controls: [Risk Assessments]
+- name: BC/DR
+  controls: [Business Continuity Plan (BCP), Contingency Plan Testing/Lessons Learned, Contingency Training/Simulations]
+- name: Change Management
+  controls: [Separation of Duties, System Hardening & Secure Baseline]
+- name: Continuous Monitoring
+  controls: [Automated Alert Response, Automated Compliance Monitoring, Data Loss Prevention System (DLP)]
+- name: Data Privacy
+  controls: [Employee Privacy Training]
+- name: Training
+  controls: [Phishing Training, Security Awareness Training]
+data_segregation_commitment: >-
+  "No data input into the Korra SaaS Platform by a Customer or any Platform output based
+  thereon will be disclosed by Korra to, or accessed or used by, Ledger's separate
+  subsidiaries' personnel or systems." — access controls enforce this separation between
+  Korra and Ledger Capital Markets, LLC / Ledger Risk Markets, LLC.
+infrastructure: Amazon Web Services
+evidence:
+- source: https://trust.korra.com
+  status: 200
+  keywords: [trust center, compliance, soc 2 type 1, soc 2 type 2, pentest report, responsible disclosure]

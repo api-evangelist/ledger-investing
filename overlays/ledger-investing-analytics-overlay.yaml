@@ -1,0 +1,54 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Ledger Analytics API
+  version: 1.0.0
+extends: openapi/ledger-investing-analytics-openapi.yml
+x-generated: '2026-07-19'
+x-method: generated
+x-source: >-
+  API Evangelist enrichment pipeline. Captures the annotations layered onto the Ledger
+  Analytics description so the derived base spec stays a faithful reading of the first-party
+  open-source client.
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: ledger-investing
+    x-apievangelist-operator: Korra Tech, LLC (a Ledger Investing company)
+    x-apievangelist-maturity: beta
+    x-apievangelist-spec-provenance: >-
+      Derived by API Evangelist from github.com/LedgerInvesting/ledger-analytics; the provider
+      publishes no OpenAPI description.
+    x-apievangelist-artifacts:
+      authentication: authentication/ledger-investing-authentication.yml
+      conventions: conventions/ledger-investing-conventions.yml
+      errors: errors/ledger-investing-problem-types.yml
+      data_model: data-model/ledger-investing-data-model.yml
+      lifecycle: lifecycle/ledger-investing-lifecycle.yml
+      conformance: conformance/ledger-investing-conformance.yml
+      skills: skills/_index.yml
+- target: $.info
+  update:
+    x-apievangelist-gaps:
+    - No provider-published OpenAPI description.
+    - No RFC 9457 problem+json error envelope and no documented error-code registry.
+    - No Idempotency-Key contract; only name-scoped overwrite upsert.
+    - No documented rate limits or rate-limit response headers.
+    - No public status page, SLA or deprecation policy.
+    - No /.well-known/security.txt on any host.
+    - No sandbox or test-data environment.
+- target: $.paths['/triangle']
+  update:
+    x-apievangelist-note: >-
+      Triangles are the only data resource. They are created by name and every model is fit
+      against a triangle NAME rather than an id.
+- target: $.paths['/tasks/{task_id}']
+  update:
+    x-apievangelist-note: >-
+      The polling endpoint is the whole asynchronous contract. There is no webhook or event
+      callback — a client must poll until task_response is non-null, then check
+      task_response.status for "success".
+- target: $.components.securitySchemes.ApiKeyAuth
+  update:
+    x-apievangelist-note: >-
+      Non-standard credential scheme — the Authorization header carries `Api-Key <key>`,
+      not `Bearer <key>`. Generic OpenAPI-driven clients and gateways commonly get this wrong.
