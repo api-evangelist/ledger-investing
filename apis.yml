@@ -173,6 +173,15 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Overlay
+  url: overlays/ledger-investing-analytics-overlay.yaml
+- type: IssueTracker
+  url: https://github.com/LedgerInvesting/ledger-analytics/issues
+- type: Releases
+  url: https://github.com/LedgerInvesting/ledger-analytics/releases
+- type: License
+  name: MIT
+  url: https://github.com/LedgerInvesting/ledger-analytics/blob/main/LICENSE
 - type: AgenticAccess
   url: agentic-access/ledger-investing-agentic-access.yml
 - type: Website
