@@ -1,0 +1,151 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ledger Analytics Cashflow Models Forecast Models API",
+    "version": "0.0.30"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Forecast Models",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List forecast models",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.korra.com/analytics/forecast-model",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return per page."
+              }
+            ]
+          },
+          "docs": "List forecast models"
+        },
+        {
+          "info": {
+            "name": "Fit a forecast model",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.korra.com/analytics/forecast-model",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Fit a forecast model"
+        },
+        {
+          "info": {
+            "name": "List available forecast model types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.korra.com/analytics/forecast-model-type"
+          },
+          "docs": "List available forecast model types"
+        },
+        {
+          "info": {
+            "name": "Retrieve a forecast model",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.korra.com/analytics/forecast-model/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieve a forecast model"
+        },
+        {
+          "info": {
+            "name": "Delete a forecast model",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.korra.com/analytics/forecast-model/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Delete a forecast model"
+        },
+        {
+          "info": {
+            "name": "Predict from a forecast model",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.korra.com/analytics/forecast-model/:id/predict",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Predict from a forecast model"
+        },
+        {
+          "info": {
+            "name": "Terminate a running forecast model task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.korra.com/analytics/forecast-model/:id/terminate",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Terminate a running forecast model task"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

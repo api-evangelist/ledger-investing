@@ -1,0 +1,151 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ledger Analytics Cashflow Models Development Models API",
+    "version": "0.0.30"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Development Models",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List development models",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.korra.com/analytics/development-model",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return per page."
+              }
+            ]
+          },
+          "docs": "List development models"
+        },
+        {
+          "info": {
+            "name": "Fit a development model",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.korra.com/analytics/development-model",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Fits a Bayesian loss development model against a named triangle. Returns a task handle to poll."
+        },
+        {
+          "info": {
+            "name": "List available development model types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.korra.com/analytics/development-model-type"
+          },
+          "docs": "List available development model types"
+        },
+        {
+          "info": {
+            "name": "Retrieve a development model",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.korra.com/analytics/development-model/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieve a development model"
+        },
+        {
+          "info": {
+            "name": "Delete a development model",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.korra.com/analytics/development-model/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Delete a development model"
+        },
+        {
+          "info": {
+            "name": "Predict from a development model",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.korra.com/analytics/development-model/:id/predict",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Runs prediction for a fitted development model against a triangle; results are written back as a new triangle."
+        },
+        {
+          "info": {
+            "name": "Terminate a running development model task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.korra.com/analytics/development-model/:id/terminate",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Terminate a running development model task"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

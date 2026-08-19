@@ -1,0 +1,197 @@
+{
+  "item": [
+    {
+      "id": "35198d34-2c4b-4181-82cd-713ee5e0c857",
+      "name": "Tasks",
+      "description": {
+        "content": "Poll the status of asynchronous fit and predict tasks.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d1dace96-f57a-4a09-8cd8-0832e8bf0ef5",
+          "name": "Poll an asynchronous task",
+          "request": {
+            "name": "Poll an asynchronous task",
+            "description": {
+              "content": "Polls a fit or predict task. While `task_response` is `null` the task is still\npending; once populated, `task_response.status` is `success` or carries an `error`.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tasks",
+                ":task_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "task_id",
+                  "description": "(Required) Identifier of the asynchronous remote task."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "238515ff-213a-4ad1-a2b7-0aa83a1db812",
+              "name": "Task state.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasks",
+                    ":task_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "task_id",
+                      "description": "(Required) Identifier of the asynchronous remote task."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"string\",\n  \"task_response\": {\n    \"status\": \"string\",\n    \"error\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "02d938be-9f94-4614-9b28-1ef775909b4b",
+              "name": "Not found — the endpoint or resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasks",
+                    ":task_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "task_id",
+                      "description": "(Required) Identifier of the asynchronous remote task."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 2749,\n  \"key_1\": 5716.298486844635\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.korra.com/analytics",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cc8eb58a-27d9-47fa-9ad7-d1fbb6d42891",
+    "name": "Ledger Analytics Cashflow Models Tasks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Ledger Analytics API provides remote compute access to Bayesian actuarial models\nfor insurance loss triangles. It is operated by Korra Tech, LLC (d/b/a Korra), a wholly\nowned SaaS subsidiary of Ledger Investing, Inc., and is currently in beta.\n\nLoss triangles are uploaded and managed as first-class `triangle` resources. Development,\ntail, forecast and cashflow models are then fit against a named triangle. Fitting and\nprediction are executed as asynchronous remote tasks: the fit/predict call returns a task\nhandle which is polled at `/tasks/{task_id}` until it completes; predictions are written\nback as new triangle resources.\n\nIMPORTANT PROVENANCE NOTE: Ledger/Korra do not publish an OpenAPI description. This\ndocument was DERIVED by API Evangelist from the request construction in the first-party,\nopen-source `ledger-analytics` Python client (github.com/LedgerInvesting/ledger-analytics,\nMIT-licensed, Copyright 2025 Korra, LLC) and from the published documentation. Paths,\nmethods, auth, request-body field names, pagination parameters and error semantics are\ntaken verbatim from that client. Response schemas are partial — only the fields the\nclient actually reads are described. It is not an authoritative provider artifact.\n\n\nContact Support:\n Name: Ledger Analytics\n Email: analytics@ledgerinvesting.com",
+      "type": "text/plain"
+    }
+  }
+}

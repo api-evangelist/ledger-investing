@@ -1,0 +1,151 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ledger Analytics Cashflow Models Tail Models API",
+    "version": "0.0.30"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tail Models",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List tail models",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.korra.com/analytics/tail-model",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return per page."
+              }
+            ]
+          },
+          "docs": "List tail models"
+        },
+        {
+          "info": {
+            "name": "Fit a tail model",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.korra.com/analytics/tail-model",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Fit a tail model"
+        },
+        {
+          "info": {
+            "name": "List available tail model types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.korra.com/analytics/tail-model-type"
+          },
+          "docs": "List available tail model types"
+        },
+        {
+          "info": {
+            "name": "Retrieve a tail model",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.korra.com/analytics/tail-model/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieve a tail model"
+        },
+        {
+          "info": {
+            "name": "Delete a tail model",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.korra.com/analytics/tail-model/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Delete a tail model"
+        },
+        {
+          "info": {
+            "name": "Predict from a tail model",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.korra.com/analytics/tail-model/:id/predict",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Predict from a tail model"
+        },
+        {
+          "info": {
+            "name": "Terminate a running tail model task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.korra.com/analytics/tail-model/:id/terminate",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Terminate a running tail model task"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

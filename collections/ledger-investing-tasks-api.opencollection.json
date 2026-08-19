@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ledger Analytics Cashflow Models Tasks API",
+    "version": "0.0.30"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Poll an asynchronous task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.korra.com/analytics/tasks/:task_id",
+            "params": [
+              {
+                "name": "task_id",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the asynchronous remote task."
+              }
+            ]
+          },
+          "docs": "Polls a fit or predict task. While `task_response` is `null` the task is still\npending; once populated, `task_response.status` is `success` or carries an `error`.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

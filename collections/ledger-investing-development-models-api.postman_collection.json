@@ -1,0 +1,1021 @@
+{
+  "item": [
+    {
+      "id": "166389be-afc2-4284-b90a-0e4f49319da1",
+      "name": "Development Models",
+      "description": {
+        "content": "Bayesian loss development models (ChainLadder, TraditionalChainLadder, ManualATA, MeyersCRC, GMCL).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "da7b855c-befb-4ee5-9f13-1cec0831cc59",
+          "name": "List development models",
+          "request": {
+            "name": "List development models",
+            "description": {},
+            "url": {
+              "path": [
+                "development-model"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25",
+                  "description": "Maximum number of results to return per page."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4132582e-75c1-4ea4-9d67-ad32aba8fbef",
+              "name": "Paginated list of development models.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "development-model"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 4653,\n  \"next\": \"string\",\n  \"previous\": \"string\",\n  \"results\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"triangle\": {\n        \"name\": \"string\"\n      },\n      \"modal_task_info\": {\n        \"task_args\": {\n          \"model_type\": \"string\",\n          \"model_config\": {\n            \"key_0\": true\n          }\n        }\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"triangle\": {\n        \"name\": \"string\"\n      },\n      \"modal_task_info\": {\n        \"task_args\": {\n          \"model_type\": \"string\",\n          \"model_config\": {\n            \"key_0\": 6142.521820508142,\n            \"key_1\": 7454.088431659807\n          }\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f064d0e0-6bcd-4ecd-9800-afed5dfa9e1a",
+              "name": "Forbidden — the API key does not have permission to perform this action.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "development-model"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3acf9290-b8c4-41f8-92ab-d93e9c61a2a7",
+          "name": "Fit a development model",
+          "request": {
+            "name": "Fit a development model",
+            "description": {
+              "content": "Fits a Bayesian loss development model against a named triangle. Returns a task handle to poll.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "development-model"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"triangle_name\": \"<string>\",\n  \"model_name\": \"<string>\",\n  \"model_type\": \"<string>\",\n  \"overwrite\": false,\n  \"model_config\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 1965\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "445004e1-9f89-42c4-b186-02f3b612d8d9",
+              "name": "Fit task accepted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "development-model"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"triangle_name\": \"<string>\",\n  \"model_name\": \"<string>\",\n  \"model_type\": \"ChainLadder\",\n  \"overwrite\": false,\n  \"model_config\": {\n    \"key_0\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"model\": {\n    \"id\": \"string\"\n  },\n  \"modal_task\": {\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fe1362da-c0f2-40d9-a831-e68dbefb5496",
+              "name": "Bad request — the payload was rejected.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "development-model"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"triangle_name\": \"<string>\",\n  \"model_name\": \"<string>\",\n  \"model_type\": \"ChainLadder\",\n  \"overwrite\": false,\n  \"model_config\": {\n    \"key_0\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb95d55b-4ab1-4676-ae32-2b640d7d9aec",
+              "name": "Forbidden — the API key does not have permission to perform this action.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "development-model"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"triangle_name\": \"<string>\",\n  \"model_name\": \"<string>\",\n  \"model_type\": \"ChainLadder\",\n  \"overwrite\": false,\n  \"model_config\": {\n    \"key_0\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "06c61cdb-efa5-4e93-b7f4-16a8c99fa6df",
+          "name": "List available development model types",
+          "request": {
+            "name": "List available development model types",
+            "description": {},
+            "url": {
+              "path": [
+                "development-model-type"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "819f0eb7-677c-4e0c-8f1d-6220d3c82d77",
+              "name": "Available model types.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "development-model-type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 4942,\n  \"key_1\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dfcafeac-3501-4244-88ff-c224d1603865",
+          "name": "Retrieve a development model",
+          "request": {
+            "name": "Retrieve a development model",
+            "description": {},
+            "url": {
+              "path": [
+                "development-model",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Identifier of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "19f6ab2a-46a1-48e9-95d3-cef247932e8d",
+              "name": "The model.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "development-model",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"triangle\": {\n    \"name\": \"string\"\n  },\n  \"modal_task_info\": {\n    \"task_args\": {\n      \"model_type\": \"string\",\n      \"model_config\": {\n        \"key_0\": \"string\",\n        \"key_1\": 3941\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "527d62c6-3071-4816-855d-e6b27329edd3",
+              "name": "Not found — the endpoint or resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "development-model",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b46024a2-aee5-4d53-8432-ff136b89327a",
+          "name": "Delete a development model",
+          "request": {
+            "name": "Delete a development model",
+            "description": {},
+            "url": {
+              "path": [
+                "development-model",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Identifier of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "feb101fc-2918-4a7e-9dac-ead0e0e47618",
+              "name": "Model deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "development-model",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "117df652-f650-46b6-b1f4-1226562687e8",
+              "name": "Not found — the endpoint or resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "development-model",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "82257d6b-807a-4fa8-94f6-b1f9a63bb5eb",
+          "name": "Predict from a development model",
+          "request": {
+            "name": "Predict from a development model",
+            "description": {
+              "content": "Runs prediction for a fitted development model against a triangle; results are written back as a new triangle.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "development-model",
+                ":id",
+                "predict"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Identifier of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"triangle_name\": \"<string>\",\n  \"prediction_name\": \"<string>\",\n  \"overwrite\": false,\n  \"predict_config\": {\n    \"target_triangle\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b5657d91-3734-4742-b6cc-fd8222d2390e",
+              "name": "Predict task accepted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "development-model",
+                    ":id",
+                    "predict"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"triangle_name\": \"<string>\",\n  \"prediction_name\": \"<string>\",\n  \"overwrite\": false,\n  \"predict_config\": {\n    \"target_triangle\": \"<string>\",\n    \"key_0\": 4873,\n    \"key_1\": false,\n    \"key_2\": \"string\",\n    \"key_3\": 4748.273819284978\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"predictions\": \"string\",\n  \"modal_task\": {\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "88d5c5b2-4ebf-459b-84ef-4e7d23b7ea57",
+              "name": "Bad request — the payload was rejected.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "development-model",
+                    ":id",
+                    "predict"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"triangle_name\": \"<string>\",\n  \"prediction_name\": \"<string>\",\n  \"overwrite\": false,\n  \"predict_config\": {\n    \"target_triangle\": \"<string>\",\n    \"key_0\": 4873,\n    \"key_1\": false,\n    \"key_2\": \"string\",\n    \"key_3\": 4748.273819284978\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ba17e0fb-e28a-4447-b3e7-93a7aba2a135",
+          "name": "Terminate a running development model task",
+          "request": {
+            "name": "Terminate a running development model task",
+            "description": {},
+            "url": {
+              "path": [
+                "development-model",
+                ":id",
+                "terminate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Identifier of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5a6ea431-5970-4b47-9b1a-84afccba7471",
+              "name": "Termination requested.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "development-model",
+                    ":id",
+                    "terminate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"string\",\n  \"task_response\": {\n    \"status\": \"string\",\n    \"error\": \"string\",\n    \"key_0\": \"string\",\n    \"key_1\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.korra.com/analytics",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5fd7d9af-de71-4492-85e2-52676713f4ce",
+    "name": "Ledger Analytics Cashflow Models Development Models API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Ledger Analytics API provides remote compute access to Bayesian actuarial models\nfor insurance loss triangles. It is operated by Korra Tech, LLC (d/b/a Korra), a wholly\nowned SaaS subsidiary of Ledger Investing, Inc., and is currently in beta.\n\nLoss triangles are uploaded and managed as first-class `triangle` resources. Development,\ntail, forecast and cashflow models are then fit against a named triangle. Fitting and\nprediction are executed as asynchronous remote tasks: the fit/predict call returns a task\nhandle which is polled at `/tasks/{task_id}` until it completes; predictions are written\nback as new triangle resources.\n\nIMPORTANT PROVENANCE NOTE: Ledger/Korra do not publish an OpenAPI description. This\ndocument was DERIVED by API Evangelist from the request construction in the first-party,\nopen-source `ledger-analytics` Python client (github.com/LedgerInvesting/ledger-analytics,\nMIT-licensed, Copyright 2025 Korra, LLC) and from the published documentation. Paths,\nmethods, auth, request-body field names, pagination parameters and error semantics are\ntaken verbatim from that client. Response schemas are partial — only the fields the\nclient actually reads are described. It is not an authoritative provider artifact.\n\n\nContact Support:\n Name: Ledger Analytics\n Email: analytics@ledgerinvesting.com",
+      "type": "text/plain"
+    }
+  }
+}

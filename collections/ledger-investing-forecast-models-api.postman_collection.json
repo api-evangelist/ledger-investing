@@ -1,0 +1,855 @@
+{
+  "item": [
+    {
+      "id": "6c5dab95-cc36-4a65-bea9-a621993c1a3b",
+      "name": "Forecast Models",
+      "description": {
+        "content": "Forecasting models (AR1, SSM, TraditionalGCC).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "788d9d33-559a-47df-9162-53281514b191",
+          "name": "List forecast models",
+          "request": {
+            "name": "List forecast models",
+            "description": {},
+            "url": {
+              "path": [
+                "forecast-model"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25",
+                  "description": "Maximum number of results to return per page."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "78fb04dd-f281-4e59-8547-6a716b8140f3",
+              "name": "Paginated list of forecast models.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forecast-model"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 1915,\n  \"next\": \"string\",\n  \"previous\": \"string\",\n  \"results\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"triangle\": {\n        \"name\": \"string\"\n      },\n      \"modal_task_info\": {\n        \"task_args\": {\n          \"model_type\": \"string\",\n          \"model_config\": {\n            \"key_0\": \"string\"\n          }\n        }\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"triangle\": {\n        \"name\": \"string\"\n      },\n      \"modal_task_info\": {\n        \"task_args\": {\n          \"model_type\": \"string\",\n          \"model_config\": {\n            \"key_0\": \"string\",\n            \"key_1\": 1210.113716540393\n          }\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c034c21b-7c5d-4dd5-a1dd-3da699bf8c05",
+          "name": "Fit a forecast model",
+          "request": {
+            "name": "Fit a forecast model",
+            "description": {},
+            "url": {
+              "path": [
+                "forecast-model"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"triangle_name\": \"<string>\",\n  \"model_name\": \"<string>\",\n  \"model_type\": \"<string>\",\n  \"overwrite\": false,\n  \"model_config\": {\n    \"key_0\": 1488\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9edb2949-968b-4d6d-b59b-40407b1d114a",
+              "name": "Fit task accepted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forecast-model"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"triangle_name\": \"<string>\",\n  \"model_name\": \"<string>\",\n  \"model_type\": \"ChainLadder\",\n  \"overwrite\": false,\n  \"model_config\": {\n    \"key_0\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"model\": {\n    \"id\": \"string\"\n  },\n  \"modal_task\": {\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "29781774-34e2-4365-8191-37bde38b3b0f",
+              "name": "Bad request — the payload was rejected.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forecast-model"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"triangle_name\": \"<string>\",\n  \"model_name\": \"<string>\",\n  \"model_type\": \"ChainLadder\",\n  \"overwrite\": false,\n  \"model_config\": {\n    \"key_0\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 4907.660977381848,\n  \"key_1\": \"string\",\n  \"key_2\": false,\n  \"key_3\": 877\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4dd38af9-1fc5-450e-9328-ff9e4321f58e",
+          "name": "List available forecast model types",
+          "request": {
+            "name": "List available forecast model types",
+            "description": {},
+            "url": {
+              "path": [
+                "forecast-model-type"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c794aad8-6b58-4d25-9a09-6a1adc0afc07",
+              "name": "Available model types.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forecast-model-type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 835.8558299972485,\n  \"key_1\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "89496e29-7c5e-44f1-8735-550dc354fe4f",
+          "name": "Retrieve a forecast model",
+          "request": {
+            "name": "Retrieve a forecast model",
+            "description": {},
+            "url": {
+              "path": [
+                "forecast-model",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Identifier of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c87ead7d-53e3-478d-8f4b-7994a0e33abc",
+              "name": "The model.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forecast-model",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"triangle\": {\n    \"name\": \"string\"\n  },\n  \"modal_task_info\": {\n    \"task_args\": {\n      \"model_type\": \"string\",\n      \"model_config\": {\n        \"key_0\": 9131,\n        \"key_1\": false\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b9106da3-54a1-4a4d-b5f2-560476e14dc3",
+              "name": "Not found — the endpoint or resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forecast-model",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 4907.660977381848,\n  \"key_1\": \"string\",\n  \"key_2\": false,\n  \"key_3\": 877\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4cd345a3-49fd-4250-8dec-565418d4f09b",
+          "name": "Delete a forecast model",
+          "request": {
+            "name": "Delete a forecast model",
+            "description": {},
+            "url": {
+              "path": [
+                "forecast-model",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Identifier of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "008e251c-82c2-4485-b954-8370e9238b4e",
+              "name": "Model deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forecast-model",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b051c228-4647-449b-9284-cf786f171aad",
+              "name": "Not found — the endpoint or resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forecast-model",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 4907.660977381848,\n  \"key_1\": \"string\",\n  \"key_2\": false,\n  \"key_3\": 877\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "12545ce5-fcb3-445a-91b8-0095c4d6ebd9",
+          "name": "Predict from a forecast model",
+          "request": {
+            "name": "Predict from a forecast model",
+            "description": {},
+            "url": {
+              "path": [
+                "forecast-model",
+                ":id",
+                "predict"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Identifier of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"triangle_name\": \"<string>\",\n  \"prediction_name\": \"<string>\",\n  \"overwrite\": false,\n  \"predict_config\": {\n    \"target_triangle\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f6a1abe7-3b1f-431f-9c92-a18c97dbee92",
+              "name": "Predict task accepted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forecast-model",
+                    ":id",
+                    "predict"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"triangle_name\": \"<string>\",\n  \"prediction_name\": \"<string>\",\n  \"overwrite\": false,\n  \"predict_config\": {\n    \"target_triangle\": \"<string>\",\n    \"key_0\": 9219.733452877203,\n    \"key_1\": 2959,\n    \"key_2\": 2720,\n    \"key_3\": 1150\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"predictions\": \"string\",\n  \"modal_task\": {\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "58f59ee2-1a9f-4ff8-8596-bed11180f22a",
+          "name": "Terminate a running forecast model task",
+          "request": {
+            "name": "Terminate a running forecast model task",
+            "description": {},
+            "url": {
+              "path": [
+                "forecast-model",
+                ":id",
+                "terminate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Identifier of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1ffe1ada-b5e3-4ca0-9017-a6b064ad113a",
+              "name": "Termination requested.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forecast-model",
+                    ":id",
+                    "terminate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"string\",\n  \"task_response\": {\n    \"status\": \"string\",\n    \"error\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.korra.com/analytics",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f03cfe97-1de1-4c5a-a531-109029b61c54",
+    "name": "Ledger Analytics Cashflow Models Forecast Models API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Ledger Analytics API provides remote compute access to Bayesian actuarial models\nfor insurance loss triangles. It is operated by Korra Tech, LLC (d/b/a Korra), a wholly\nowned SaaS subsidiary of Ledger Investing, Inc., and is currently in beta.\n\nLoss triangles are uploaded and managed as first-class `triangle` resources. Development,\ntail, forecast and cashflow models are then fit against a named triangle. Fitting and\nprediction are executed as asynchronous remote tasks: the fit/predict call returns a task\nhandle which is polled at `/tasks/{task_id}` until it completes; predictions are written\nback as new triangle resources.\n\nIMPORTANT PROVENANCE NOTE: Ledger/Korra do not publish an OpenAPI description. This\ndocument was DERIVED by API Evangelist from the request construction in the first-party,\nopen-source `ledger-analytics` Python client (github.com/LedgerInvesting/ledger-analytics,\nMIT-licensed, Copyright 2025 Korra, LLC) and from the published documentation. Paths,\nmethods, auth, request-body field names, pagination parameters and error semantics are\ntaken verbatim from that client. Response schemas are partial — only the fields the\nclient actually reads are described. It is not an authoritative provider artifact.\n\n\nContact Support:\n Name: Ledger Analytics\n Email: analytics@ledgerinvesting.com",
+      "type": "text/plain"
+    }
+  }
+}
