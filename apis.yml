@@ -44,6 +44,17 @@ tags:
 - Analytics
 - Capital Markets
 - Data Science
+- Financial-Services
+tags_raw:
+- Company
+- Insurance Tech
+- Insurance
+- Reinsurance
+- Insurance-Linked Securities
+- Actuarial
+- Analytics
+- Capital Markets
+- Data Science
 - Financial Services
 apis:
 - aid: ledger-investing:ledger-investing-cashflow-models-api
@@ -133,6 +144,8 @@ apis:
   humanURL: https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/index.html
   baseURL: https://api.korra.com/analytics/
   tags:
+  - Task
+  tags_raw:
   - Tasks
   properties:
   - type: OpenAPI
