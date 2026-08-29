@@ -200,6 +200,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/ledger-investing-capability-edges.yml
+  name: Ledger Investing Business Capability Map
 - type: Overlay
   url: overlays/ledger-investing-analytics-overlay.yaml
 - type: IssueTracker

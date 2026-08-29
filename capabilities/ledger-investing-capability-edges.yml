@@ -1,0 +1,69 @@
+slug: ledger-investing
+provider: Ledger Investing
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Insurance
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 5
+edges:
+- tag: Cashflow Models
+  spec_file: ledger-investing-cashflow-models-api-openapi.yml
+  capability_id: BC-2180
+  capability_id_l1: BC-2180
+  capability_name: Actuarial Management
+  confidence: 0.82
+  evidence: Bayesian actuarial models for insurance loss triangles ... Development, tail, forecast and
+    cashflow models are then fit against a named triangle
+  reason: Cashflow models fitted to insurance loss triangles are actuarial modelling compute (payout pattern
+    / cashflow projection). Clearly Actuarial Management; the specific L2 (reserving vs capital/ALM use)
+    is not pinned down by the operations, so only the L1 is asserted.
+- tag: Development Models
+  spec_file: ledger-investing-development-models-api-openapi.yml
+  capability_id: BC-2180.20
+  capability_id_l1: BC-2180
+  capability_name: Reserving Actuarial Management
+  confidence: 0.82
+  evidence: POST /development-model  fitDevelopmentModel  Fit a development model — models for insurance
+    loss triangles
+  reason: Fitting loss development models to loss triangles and predicting ultimate losses is loss triangulation
+    / IBNR estimation, the core of Reserving Actuarial Management.
+- tag: Tail Models
+  spec_file: ledger-investing-tail-models-api-openapi.yml
+  capability_id: BC-2180.20
+  capability_id_l1: BC-2180
+  capability_name: Reserving Actuarial Management
+  confidence: 0.8
+  evidence: POST /tail-model  fitTailModel  Fit a tail model ... models for insurance loss triangles
+  reason: Tail factor models extend loss development beyond the observed triangle to estimate ultimate
+    losses — reserving actuarial modelling (loss triangulation / IBNR).
+- tag: Forecast Models
+  spec_file: ledger-investing-forecast-models-api-openapi.yml
+  capability_id: BC-2180
+  capability_id_l1: BC-2180
+  capability_name: Actuarial Management
+  confidence: 0.75
+  evidence: POST /forecast-model  fitForecastModel  Fit a forecast model ... Bayesian actuarial models
+    for insurance loss triangles
+  reason: Actuarial forecast models fitted to insurance loss triangles — plainly Actuarial Management,
+    but forecasting future period loss ratios could serve either reserving or pricing actuarial work,
+    so no L2 is asserted.
+- tag: Triangles
+  spec_file: ledger-investing-triangles-api-openapi.yml
+  capability_id: BC-2180.20
+  capability_id_l1: BC-2180
+  capability_name: Reserving Actuarial Management
+  confidence: 0.75
+  evidence: '"Bayesian actuarial models for insurance loss triangles"; "Loss triangles are uploaded and
+    managed as first-class `triangle` resources. Development, tail, forecast and cashflow models are then
+    fit against a named triangle."'
+  reason: The tag manages loss-triangle resources that are the input to development/tail/forecast actuarial
+    models — i.e. loss triangulation and reserving actuarial work. BC-2180.20 explicitly names "Loss triangulation,
+    IBNR estimation". Some ambiguity remains because triangles also feed pricing models (BC-2180.10),
+    so confidence is moderate.
