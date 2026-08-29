@@ -12,6 +12,20 @@ description: 'Ledger Investing is a New York-based specialist broking and adviso
   model stacking) Python libraries. Other subsidiaries include Ledger Capital Markets, LLC (SEC-registered
   broker-dealer, FINRA/SIPC member) and Ledger Risk Markets, LLC (licensed reinsurance intermediary).'
 url: https://raw.githubusercontent.com/api-evangelist/ledger-investing/refs/heads/main/apis.yml
+deliveryModel:
+  model: open-core
+  license: MIT
+  open_source: true
+  commercial: true
+  callable_host: true
+  label: Open core · an OSS project plus a commercial hosted product
+  confidence: high
+  source:
+  - license
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
