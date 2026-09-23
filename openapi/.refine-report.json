@@ -1,12 +1,7 @@
 {
   "provider": "ledger-investing",
   "sources": [
-    "ledger-investing-cashflow-models-api-openapi.yml",
-    "ledger-investing-development-models-api-openapi.yml",
-    "ledger-investing-forecast-models-api-openapi.yml",
-    "ledger-investing-tail-models-api-openapi.yml",
-    "ledger-investing-tasks-api-openapi.yml",
-    "ledger-investing-triangles-api-openapi.yml"
+    "_original/ledger-investing-analytics-openapi.yml"
   ],
   "outputs": [
     "ledger-investing-cashflow-models-api-openapi.yml",
@@ -19,6 +14,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "ledger-investing-analytics-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "ledger-investing-cashflow-models-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ledger-investing-development-models-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ledger-investing-forecast-models-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ledger-investing-tail-models-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ledger-investing-tasks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ledger-investing-triangles-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

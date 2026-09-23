@@ -1,41 +1,11 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Ledger Analytics Cashflow Models Triangles API
+  title: Ledger Analytics Triangles API
   version: 0.0.30
   summary: Remote Bayesian actuarial compute over insurance loss triangles.
   description: 'The Ledger Analytics API provides remote compute access to Bayesian actuarial models
 
-    for insurance loss triangles. It is operated by Korra Tech, LLC (d/b/a Korra), a wholly
-
-    owned SaaS subsidiary of Ledger Investing, Inc., and is currently in beta.
-
-
-    Loss triangles are uploaded and managed as first-class `triangle` resources. Development,
-
-    tail, forecast and cashflow models are then fit against a named triangle. Fitting and
-
-    prediction are executed as asynchronous remote tasks: the fit/predict call returns a task
-
-    handle which is polled at `/tasks/{task_id}` until it completes; predictions are written
-
-    back as new triangle resources.
-
-
-    IMPORTANT PROVENANCE NOTE: Ledger/Korra do not publish an OpenAPI description. This
-
-    document was DERIVED by API Evangelist from the request construction in the first-party,
-
-    open-source `ledger-analytics` Python client (github.com/LedgerInvesting/ledger-analytics,
-
-    MIT-licensed, Copyright 2025 Korra, LLC) and from the published documentation. Paths,
-
-    methods, auth, request-body field names, pagination parameters and error semantics are
-
-    taken verbatim from that client. Response schemas are partial — only the fields the
-
-    client actually reads are described. It is not an authoritative provider artifact.
-
-    '
+    for insurance loss triangles.'
   contact:
     name: Ledger Analytics
     email: analytics@ledgerinvesting.com
@@ -83,9 +53,7 @@ paths:
 
         existing triangle of the same name — the upsert semantic used by the client''s
 
-        `get_or_create` / `get_or_update` helpers.
-
-        '
+        `get_or_create` / `get_or_update` helpers.'
       requestBody:
         required: true
         content:
@@ -117,9 +85,7 @@ paths:
 
         field with a pre-signed download location instead of an inline `triangle_data`
 
-        payload; the client follows that URL and streams the content.
-
-        '
+        payload; the client follows that URL and streams the content.'
       responses:
         '200':
           description: The triangle.
@@ -145,13 +111,6 @@ paths:
           $ref: '#/components/responses/Forbidden'
 components:
   parameters:
-    ResourceId:
-      name: id
-      in: path
-      required: true
-      description: Identifier of the resource.
-      schema:
-        type: string
     Limit:
       name: limit
       in: query
@@ -161,13 +120,14 @@ components:
         type: integer
         default: 25
         minimum: 1
+    ResourceId:
+      name: id
+      in: path
+      required: true
+      description: Identifier of the resource.
+      schema:
+        type: string
   responses:
-    Forbidden:
-      description: Forbidden — the API key does not have permission to perform this action.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     NotFound:
       description: Not found — the endpoint or resource does not exist.
       content:
@@ -182,6 +142,12 @@ components:
             $ref: '#/components/schemas/Error'
     InternalServerError:
       description: Internal server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Forbidden — the API key does not have permission to perform this action.
       content:
         application/json:
           schema:
@@ -207,39 +173,6 @@ components:
           - 'null'
           format: uri
           description: Pre-signed download URL returned in place of inline data for large triangles.
-    Pagination:
-      type: object
-      properties:
-        count:
-          type: integer
-          description: Total number of matching objects.
-        next:
-          type:
-          - string
-          - 'null'
-          description: URL of the next page, when present.
-        previous:
-          type:
-          - string
-          - 'null'
-          description: URL of the previous page, when present.
-    Error:
-      type: object
-      description: 'Error envelope. The client surfaces the decoded JSON body verbatim in the raised
-
-        HTTPError message; the exact field names are not documented by the provider.
-
-        '
-      additionalProperties: true
-    PaginatedTriangleList:
-      allOf:
-      - $ref: '#/components/schemas/Pagination'
-      - type: object
-        properties:
-          results:
-            type: array
-            items:
-              $ref: '#/components/schemas/Triangle'
     TriangleCreateRequest:
       type: object
       required:
@@ -257,6 +190,39 @@ components:
           type: boolean
           default: false
           description: Replace an existing triangle of the same name.
+    Error:
+      type: object
+      description: 'Error envelope. The client surfaces the decoded JSON body verbatim in the raised
+
+        HTTPError message; the exact field names are not documented by the provider.
+
+        '
+      additionalProperties: true
+    PaginatedTriangleList:
+      allOf:
+      - $ref: '#/components/schemas/Pagination'
+      - type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/components/schemas/Triangle'
+    Pagination:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Total number of matching objects.
+        next:
+          type:
+          - string
+          - 'null'
+          description: URL of the next page, when present.
+        previous:
+          type:
+          - string
+          - 'null'
+          description: URL of the previous page, when present.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -1,41 +1,11 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Ledger Analytics Cashflow Models Tasks API
+  title: Ledger Analytics Tasks API
   version: 0.0.30
   summary: Remote Bayesian actuarial compute over insurance loss triangles.
   description: 'The Ledger Analytics API provides remote compute access to Bayesian actuarial models
 
-    for insurance loss triangles. It is operated by Korra Tech, LLC (d/b/a Korra), a wholly
-
-    owned SaaS subsidiary of Ledger Investing, Inc., and is currently in beta.
-
-
-    Loss triangles are uploaded and managed as first-class `triangle` resources. Development,
-
-    tail, forecast and cashflow models are then fit against a named triangle. Fitting and
-
-    prediction are executed as asynchronous remote tasks: the fit/predict call returns a task
-
-    handle which is polled at `/tasks/{task_id}` until it completes; predictions are written
-
-    back as new triangle resources.
-
-
-    IMPORTANT PROVENANCE NOTE: Ledger/Korra do not publish an OpenAPI description. This
-
-    document was DERIVED by API Evangelist from the request construction in the first-party,
-
-    open-source `ledger-analytics` Python client (github.com/LedgerInvesting/ledger-analytics,
-
-    MIT-licensed, Copyright 2025 Korra, LLC) and from the published documentation. Paths,
-
-    methods, auth, request-body field names, pagination parameters and error semantics are
-
-    taken verbatim from that client. Response schemas are partial — only the fields the
-
-    client actually reads are described. It is not an authoritative provider artifact.
-
-    '
+    for insurance loss triangles.'
   contact:
     name: Ledger Analytics
     email: analytics@ledgerinvesting.com
@@ -67,9 +37,7 @@ paths:
       summary: Poll an asynchronous task
       description: 'Polls a fit or predict task. While `task_response` is `null` the task is still
 
-        pending; once populated, `task_response.status` is `success` or carries an `error`.
-
-        '
+        pending; once populated, `task_response.status` is `success` or carries an `error`.'
       responses:
         '200':
           description: Task state.
@@ -80,22 +48,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    NotFound:
-      description: Not found — the endpoint or resource does not exist.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      description: 'Error envelope. The client surfaces the decoded JSON body verbatim in the raised
-
-        HTTPError message; the exact field names are not documented by the provider.
-
-        '
-      additionalProperties: true
     Task:
       type: object
       description: Asynchronous remote task state.
@@ -120,6 +73,21 @@ components:
               - string
               - 'null'
               description: Failure detail when the task did not succeed.
+    Error:
+      type: object
+      description: 'Error envelope. The client surfaces the decoded JSON body verbatim in the raised
+
+        HTTPError message; the exact field names are not documented by the provider.
+
+        '
+      additionalProperties: true
+  responses:
+    NotFound:
+      description: Not found — the endpoint or resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
