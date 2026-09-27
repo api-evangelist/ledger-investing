@@ -49,6 +49,14 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    Error:
+      type: object
+      description: 'Error envelope. The client surfaces the decoded JSON body verbatim in the raised
+
+        HTTPError message; the exact field names are not documented by the provider.
+
+        '
+      additionalProperties: true
     Task:
       type: object
       description: Asynchronous remote task state.
@@ -73,14 +81,6 @@ components:
               - string
               - 'null'
               description: Failure detail when the task did not succeed.
-    Error:
-      type: object
-      description: 'Error envelope. The client surfaces the decoded JSON body verbatim in the raised
-
-        HTTPError message; the exact field names are not documented by the provider.
-
-        '
-      additionalProperties: true
   responses:
     NotFound:
       description: Not found — the endpoint or resource does not exist.

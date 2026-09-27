@@ -142,48 +142,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/Task'
 components:
-  parameters:
-    Limit:
-      name: limit
-      in: query
-      required: false
-      description: Maximum number of results to return per page.
-      schema:
-        type: integer
-        default: 25
-        minimum: 1
-    ResourceId:
-      name: id
-      in: path
-      required: true
-      description: Identifier of the resource.
-      schema:
-        type: string
   schemas:
-    Task:
+    Pagination:
       type: object
-      description: Asynchronous remote task state.
       properties:
-        id:
-          type: string
-        status:
-          type: string
-          description: Task status, e.g. `created`, `pending`, `terminated`.
-        task_response:
+        count:
+          type: integer
+          description: Total number of matching objects.
+        next:
           type:
-          - object
+          - string
           - 'null'
-          description: Null while the task is pending; populated on completion.
-          additionalProperties: true
-          properties:
-            status:
-              type: string
-              description: '`success` when the task completed successfully.'
-            error:
-              type:
-              - string
-              - 'null'
-              description: Failure detail when the task did not succeed.
+          description: URL of the next page, when present.
+        previous:
+          type:
+          - string
+          - 'null'
+          description: URL of the previous page, when present.
+    PaginatedModelList:
+      allOf:
+      - $ref: '#/components/schemas/Pagination'
+      - type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/components/schemas/Model'
     Model:
       type: object
       description: A fitted model resource.
@@ -210,6 +194,92 @@ components:
                 model_config:
                   type: object
                   additionalProperties: true
+    ModelTypeList:
+      type: object
+      description: Available model types for a model class.
+      additionalProperties: true
+    PredictTaskResponse:
+      type: object
+      description: Response returned when a prediction is accepted.
+      properties:
+        predictions:
+          type: string
+          description: Identifier of the triangle the predictions will be written to.
+        modal_task:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Task identifier to poll at `/tasks/{task_id}`.
+    ModelTaskResponse:
+      type: object
+      description: Response returned when a fit is accepted.
+      properties:
+        model:
+          type: object
+          properties:
+            id:
+              type: string
+        modal_task:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Task identifier to poll at `/tasks/{task_id}`.
+    Task:
+      type: object
+      description: Asynchronous remote task state.
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+          description: Task status, e.g. `created`, `pending`, `terminated`.
+        task_response:
+          type:
+          - object
+          - 'null'
+          description: Null while the task is pending; populated on completion.
+          additionalProperties: true
+          properties:
+            status:
+              type: string
+              description: '`success` when the task completed successfully.'
+            error:
+              type:
+              - string
+              - 'null'
+              description: Failure detail when the task did not succeed.
+    Error:
+      type: object
+      description: 'Error envelope. The client surfaces the decoded JSON body verbatim in the raised
+
+        HTTPError message; the exact field names are not documented by the provider.
+
+        '
+      additionalProperties: true
+    ModelPredictRequest:
+      type: object
+      required:
+      - triangle_name
+      properties:
+        triangle_name:
+          type: string
+          description: Name of the triangle to predict on.
+        prediction_name:
+          type: string
+          description: Optional name to store the resulting prediction triangle under.
+        overwrite:
+          type: boolean
+          default: false
+        predict_config:
+          type: object
+          description: Prediction configuration; may include `target_triangle` naming a triangle to predict onto.
+          additionalProperties: true
+          properties:
+            target_triangle:
+              type: string
+              description: Name of the triangle to project predictions onto.
     ModelFitRequest:
       type: object
       required:
@@ -252,94 +322,13 @@ components:
 
             '
           additionalProperties: true
-    ModelPredictRequest:
-      type: object
-      required:
-      - triangle_name
-      properties:
-        triangle_name:
-          type: string
-          description: Name of the triangle to predict on.
-        prediction_name:
-          type: string
-          description: Optional name to store the resulting prediction triangle under.
-        overwrite:
-          type: boolean
-          default: false
-        predict_config:
-          type: object
-          description: Prediction configuration; may include `target_triangle` naming a triangle to predict onto.
-          additionalProperties: true
-          properties:
-            target_triangle:
-              type: string
-              description: Name of the triangle to project predictions onto.
-    ModelTypeList:
-      type: object
-      description: Available model types for a model class.
-      additionalProperties: true
-    ModelTaskResponse:
-      type: object
-      description: Response returned when a fit is accepted.
-      properties:
-        model:
-          type: object
-          properties:
-            id:
-              type: string
-        modal_task:
-          type: object
-          properties:
-            id:
-              type: string
-              description: Task identifier to poll at `/tasks/{task_id}`.
-    Error:
-      type: object
-      description: 'Error envelope. The client surfaces the decoded JSON body verbatim in the raised
-
-        HTTPError message; the exact field names are not documented by the provider.
-
-        '
-      additionalProperties: true
-    PredictTaskResponse:
-      type: object
-      description: Response returned when a prediction is accepted.
-      properties:
-        predictions:
-          type: string
-          description: Identifier of the triangle the predictions will be written to.
-        modal_task:
-          type: object
-          properties:
-            id:
-              type: string
-              description: Task identifier to poll at `/tasks/{task_id}`.
-    PaginatedModelList:
-      allOf:
-      - $ref: '#/components/schemas/Pagination'
-      - type: object
-        properties:
-          results:
-            type: array
-            items:
-              $ref: '#/components/schemas/Model'
-    Pagination:
-      type: object
-      properties:
-        count:
-          type: integer
-          description: Total number of matching objects.
-        next:
-          type:
-          - string
-          - 'null'
-          description: URL of the next page, when present.
-        previous:
-          type:
-          - string
-          - 'null'
-          description: URL of the previous page, when present.
   responses:
+    Forbidden:
+      description: Forbidden — the API key does not have permission to perform this action.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     NotFound:
       description: Not found — the endpoint or resource does not exist.
       content:
@@ -352,12 +341,23 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: Forbidden — the API key does not have permission to perform this action.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+  parameters:
+    ResourceId:
+      name: id
+      in: path
+      required: true
+      description: Identifier of the resource.
+      schema:
+        type: string
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Maximum number of results to return per page.
+      schema:
+        type: integer
+        default: 25
+        minimum: 1
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

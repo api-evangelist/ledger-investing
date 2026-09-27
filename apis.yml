@@ -59,7 +59,7 @@ tags:
 - Analytics
 - Capital Markets
 - Data Science
-- Financial-Services
+- Financial Services
 tags_raw:
 - Company
 - Insurance Tech
@@ -71,6 +71,7 @@ tags_raw:
 - Capital Markets
 - Data Science
 - Financial Services
+- Financial-Services
 apis:
 - aid: ledger-investing:ledger-investing-cashflow-models-api
   name: Ledger Investing Cashflow Models API
