@@ -131,6 +131,14 @@ components:
           - 'null'
           format: uri
           description: Pre-signed download URL returned in place of inline data for large triangles.
+    Error:
+      type: object
+      description: 'Error envelope. The client surfaces the decoded JSON body verbatim in the raised
+
+        HTTPError message; the exact field names are not documented by the provider.
+
+        '
+      additionalProperties: true
     Pagination:
       type: object
       properties:
@@ -173,23 +181,26 @@ components:
           type: boolean
           default: false
           description: Replace an existing triangle of the same name.
-    Error:
-      type: object
-      description: 'Error envelope. The client surfaces the decoded JSON body verbatim in the raised
-
-        HTTPError message; the exact field names are not documented by the provider.
-
-        '
-      additionalProperties: true
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Maximum number of results to return per page.
+      schema:
+        type: integer
+        default: 25
+        minimum: 1
+    ResourceId:
+      name: id
+      in: path
+      required: true
+      description: Identifier of the resource.
+      schema:
+        type: string
   responses:
     Forbidden:
       description: Forbidden — the API key does not have permission to perform this action.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Not found — the endpoint or resource does not exist.
       content:
         application/json:
           schema:
@@ -200,29 +211,18 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Not found — the endpoint or resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     InternalServerError:
       description: Internal server error.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    ResourceId:
-      name: id
-      in: path
-      required: true
-      description: Identifier of the resource.
-      schema:
-        type: string
-    Limit:
-      name: limit
-      in: query
-      required: false
-      description: Maximum number of results to return per page.
-      schema:
-        type: integer
-        default: 25
-        minimum: 1
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

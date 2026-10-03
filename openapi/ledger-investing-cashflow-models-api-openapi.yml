@@ -124,50 +124,6 @@ paths:
                 $ref: '#/components/schemas/PredictTaskResponse'
 components:
   schemas:
-    Pagination:
-      type: object
-      properties:
-        count:
-          type: integer
-          description: Total number of matching objects.
-        next:
-          type:
-          - string
-          - 'null'
-          description: URL of the next page, when present.
-        previous:
-          type:
-          - string
-          - 'null'
-          description: URL of the previous page, when present.
-    CashflowCreateRequest:
-      type: object
-      required:
-      - name
-      - dev_model_name
-      - tail_model_name
-      properties:
-        name:
-          type: string
-          description: Name to store the cashflow model under.
-        dev_model_name:
-          type: string
-          description: Name of the fitted development model to compose from.
-        tail_model_name:
-          type: string
-          description: Name of the fitted tail model to compose from.
-        model_config:
-          type: object
-          additionalProperties: true
-    PaginatedModelList:
-      allOf:
-      - $ref: '#/components/schemas/Pagination'
-      - type: object
-        properties:
-          results:
-            type: array
-            items:
-              $ref: '#/components/schemas/Model'
     Model:
       type: object
       description: A fitted model resource.
@@ -194,23 +150,30 @@ components:
                 model_config:
                   type: object
                   additionalProperties: true
-    ModelTypeList:
+    Pagination:
       type: object
-      description: Available model types for a model class.
-      additionalProperties: true
-    PredictTaskResponse:
-      type: object
-      description: Response returned when a prediction is accepted.
       properties:
-        predictions:
-          type: string
-          description: Identifier of the triangle the predictions will be written to.
-        modal_task:
-          type: object
-          properties:
-            id:
-              type: string
-              description: Task identifier to poll at `/tasks/{task_id}`.
+        count:
+          type: integer
+          description: Total number of matching objects.
+        next:
+          type:
+          - string
+          - 'null'
+          description: URL of the next page, when present.
+        previous:
+          type:
+          - string
+          - 'null'
+          description: URL of the previous page, when present.
+    Error:
+      type: object
+      description: 'Error envelope. The client surfaces the decoded JSON body verbatim in the raised
+
+        HTTPError message; the exact field names are not documented by the provider.
+
+        '
+      additionalProperties: true
     ModelTaskResponse:
       type: object
       description: Response returned when a fit is accepted.
@@ -238,14 +201,6 @@ components:
               initial_loss_name:
                 type: string
                 description: Name of an initial loss triangle to seed the cashflow projection.
-    Error:
-      type: object
-      description: 'Error envelope. The client surfaces the decoded JSON body verbatim in the raised
-
-        HTTPError message; the exact field names are not documented by the provider.
-
-        '
-      additionalProperties: true
     ModelPredictRequest:
       type: object
       required:
@@ -268,6 +223,19 @@ components:
             target_triangle:
               type: string
               description: Name of the triangle to project predictions onto.
+    ModelTypeList:
+      type: object
+      description: Available model types for a model class.
+      additionalProperties: true
+    PaginatedModelList:
+      allOf:
+      - $ref: '#/components/schemas/Pagination'
+      - type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/components/schemas/Model'
     CashflowModel:
       type: object
       description: A cashflow model composed from a development model and a tail model.
@@ -282,27 +250,39 @@ components:
         tail_model:
           type: string
           description: Identifier of the source tail model.
-  responses:
-    NotFound:
-      description: Not found — the endpoint or resource does not exist.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request — the payload was rejected.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    PredictTaskResponse:
+      type: object
+      description: Response returned when a prediction is accepted.
+      properties:
+        predictions:
+          type: string
+          description: Identifier of the triangle the predictions will be written to.
+        modal_task:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Task identifier to poll at `/tasks/{task_id}`.
+    CashflowCreateRequest:
+      type: object
+      required:
+      - name
+      - dev_model_name
+      - tail_model_name
+      properties:
+        name:
+          type: string
+          description: Name to store the cashflow model under.
+        dev_model_name:
+          type: string
+          description: Name of the fitted development model to compose from.
+        tail_model_name:
+          type: string
+          description: Name of the fitted tail model to compose from.
+        model_config:
+          type: object
+          additionalProperties: true
   parameters:
-    ResourceId:
-      name: id
-      in: path
-      required: true
-      description: Identifier of the resource.
-      schema:
-        type: string
     Limit:
       name: limit
       in: query
@@ -312,6 +292,26 @@ components:
         type: integer
         default: 25
         minimum: 1
+    ResourceId:
+      name: id
+      in: path
+      required: true
+      description: Identifier of the resource.
+      schema:
+        type: string
+  responses:
+    BadRequest:
+      description: Bad request — the payload was rejected.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Not found — the endpoint or resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
