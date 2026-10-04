@@ -124,6 +124,54 @@ paths:
                 $ref: '#/components/schemas/PredictTaskResponse'
 components:
   schemas:
+    CashflowCreateRequest:
+      type: object
+      required:
+      - name
+      - dev_model_name
+      - tail_model_name
+      properties:
+        name:
+          type: string
+          description: Name to store the cashflow model under.
+        dev_model_name:
+          type: string
+          description: Name of the fitted development model to compose from.
+        tail_model_name:
+          type: string
+          description: Name of the fitted tail model to compose from.
+        model_config:
+          type: object
+          additionalProperties: true
+    ModelTaskResponse:
+      type: object
+      description: Response returned when a fit is accepted.
+      properties:
+        model:
+          type: object
+          properties:
+            id:
+              type: string
+        modal_task:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Task identifier to poll at `/tasks/{task_id}`.
+    CashflowModel:
+      type: object
+      description: A cashflow model composed from a development model and a tail model.
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        development_model:
+          type: string
+          description: Identifier of the source development model.
+        tail_model:
+          type: string
+          description: Identifier of the source tail model.
     Model:
       type: object
       description: A fitted model resource.
@@ -150,6 +198,30 @@ components:
                 model_config:
                   type: object
                   additionalProperties: true
+    ModelTypeList:
+      type: object
+      description: Available model types for a model class.
+      additionalProperties: true
+    Error:
+      type: object
+      description: 'Error envelope. The client surfaces the decoded JSON body verbatim in the raised
+
+        HTTPError message; the exact field names are not documented by the provider.
+
+        '
+      additionalProperties: true
+    CashflowPredictRequest:
+      allOf:
+      - $ref: '#/components/schemas/ModelPredictRequest'
+      - type: object
+        properties:
+          predict_config:
+            type: object
+            additionalProperties: true
+            properties:
+              initial_loss_name:
+                type: string
+                description: Name of an initial loss triangle to seed the cashflow projection.
     Pagination:
       type: object
       properties:
@@ -166,41 +238,6 @@ components:
           - string
           - 'null'
           description: URL of the previous page, when present.
-    Error:
-      type: object
-      description: 'Error envelope. The client surfaces the decoded JSON body verbatim in the raised
-
-        HTTPError message; the exact field names are not documented by the provider.
-
-        '
-      additionalProperties: true
-    ModelTaskResponse:
-      type: object
-      description: Response returned when a fit is accepted.
-      properties:
-        model:
-          type: object
-          properties:
-            id:
-              type: string
-        modal_task:
-          type: object
-          properties:
-            id:
-              type: string
-              description: Task identifier to poll at `/tasks/{task_id}`.
-    CashflowPredictRequest:
-      allOf:
-      - $ref: '#/components/schemas/ModelPredictRequest'
-      - type: object
-        properties:
-          predict_config:
-            type: object
-            additionalProperties: true
-            properties:
-              initial_loss_name:
-                type: string
-                description: Name of an initial loss triangle to seed the cashflow projection.
     ModelPredictRequest:
       type: object
       required:
@@ -223,10 +260,6 @@ components:
             target_triangle:
               type: string
               description: Name of the triangle to project predictions onto.
-    ModelTypeList:
-      type: object
-      description: Available model types for a model class.
-      additionalProperties: true
     PaginatedModelList:
       allOf:
       - $ref: '#/components/schemas/Pagination'
@@ -236,20 +269,6 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/Model'
-    CashflowModel:
-      type: object
-      description: A cashflow model composed from a development model and a tail model.
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        development_model:
-          type: string
-          description: Identifier of the source development model.
-        tail_model:
-          type: string
-          description: Identifier of the source tail model.
     PredictTaskResponse:
       type: object
       description: Response returned when a prediction is accepted.
@@ -263,25 +282,6 @@ components:
             id:
               type: string
               description: Task identifier to poll at `/tasks/{task_id}`.
-    CashflowCreateRequest:
-      type: object
-      required:
-      - name
-      - dev_model_name
-      - tail_model_name
-      properties:
-        name:
-          type: string
-          description: Name to store the cashflow model under.
-        dev_model_name:
-          type: string
-          description: Name of the fitted development model to compose from.
-        tail_model_name:
-          type: string
-          description: Name of the fitted tail model to compose from.
-        model_config:
-          type: object
-          additionalProperties: true
   parameters:
     Limit:
       name: limit

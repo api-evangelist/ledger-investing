@@ -135,6 +135,45 @@ paths:
                 $ref: '#/components/schemas/Task'
 components:
   schemas:
+    ModelTaskResponse:
+      type: object
+      description: Response returned when a fit is accepted.
+      properties:
+        model:
+          type: object
+          properties:
+            id:
+              type: string
+        modal_task:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Task identifier to poll at `/tasks/{task_id}`.
+    Task:
+      type: object
+      description: Asynchronous remote task state.
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+          description: Task status, e.g. `created`, `pending`, `terminated`.
+        task_response:
+          type:
+          - object
+          - 'null'
+          description: Null while the task is pending; populated on completion.
+          additionalProperties: true
+          properties:
+            status:
+              type: string
+              description: '`success` when the task completed successfully.'
+            error:
+              type:
+              - string
+              - 'null'
+              description: Failure detail when the task did not succeed.
     Model:
       type: object
       description: A fitted model resource.
@@ -161,6 +200,18 @@ components:
                 model_config:
                   type: object
                   additionalProperties: true
+    ModelTypeList:
+      type: object
+      description: Available model types for a model class.
+      additionalProperties: true
+    Error:
+      type: object
+      description: 'Error envelope. The client surfaces the decoded JSON body verbatim in the raised
+
+        HTTPError message; the exact field names are not documented by the provider.
+
+        '
+      additionalProperties: true
     Pagination:
       type: object
       properties:
@@ -177,29 +228,28 @@ components:
           - string
           - 'null'
           description: URL of the previous page, when present.
-    Error:
+    ModelPredictRequest:
       type: object
-      description: 'Error envelope. The client surfaces the decoded JSON body verbatim in the raised
-
-        HTTPError message; the exact field names are not documented by the provider.
-
-        '
-      additionalProperties: true
-    ModelTaskResponse:
-      type: object
-      description: Response returned when a fit is accepted.
+      required:
+      - triangle_name
       properties:
-        model:
+        triangle_name:
+          type: string
+          description: Name of the triangle to predict on.
+        prediction_name:
+          type: string
+          description: Optional name to store the resulting prediction triangle under.
+        overwrite:
+          type: boolean
+          default: false
+        predict_config:
           type: object
+          description: Prediction configuration; may include `target_triangle` naming a triangle to predict onto.
+          additionalProperties: true
           properties:
-            id:
+            target_triangle:
               type: string
-        modal_task:
-          type: object
-          properties:
-            id:
-              type: string
-              description: Task identifier to poll at `/tasks/{task_id}`.
+              description: Name of the triangle to project predictions onto.
     ModelFitRequest:
       type: object
       required:
@@ -242,52 +292,6 @@ components:
 
             '
           additionalProperties: true
-    ModelPredictRequest:
-      type: object
-      required:
-      - triangle_name
-      properties:
-        triangle_name:
-          type: string
-          description: Name of the triangle to predict on.
-        prediction_name:
-          type: string
-          description: Optional name to store the resulting prediction triangle under.
-        overwrite:
-          type: boolean
-          default: false
-        predict_config:
-          type: object
-          description: Prediction configuration; may include `target_triangle` naming a triangle to predict onto.
-          additionalProperties: true
-          properties:
-            target_triangle:
-              type: string
-              description: Name of the triangle to project predictions onto.
-    Task:
-      type: object
-      description: Asynchronous remote task state.
-      properties:
-        id:
-          type: string
-        status:
-          type: string
-          description: Task status, e.g. `created`, `pending`, `terminated`.
-        task_response:
-          type:
-          - object
-          - 'null'
-          description: Null while the task is pending; populated on completion.
-          additionalProperties: true
-          properties:
-            status:
-              type: string
-              description: '`success` when the task completed successfully.'
-            error:
-              type:
-              - string
-              - 'null'
-              description: Failure detail when the task did not succeed.
     PaginatedModelList:
       allOf:
       - $ref: '#/components/schemas/Pagination'
@@ -297,10 +301,6 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/Model'
-    ModelTypeList:
-      type: object
-      description: Available model types for a model class.
-      additionalProperties: true
     PredictTaskResponse:
       type: object
       description: Response returned when a prediction is accepted.

@@ -110,7 +110,99 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
 components:
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Maximum number of results to return per page.
+      schema:
+        type: integer
+        default: 25
+        minimum: 1
+    ResourceId:
+      name: id
+      in: path
+      required: true
+      description: Identifier of the resource.
+      schema:
+        type: string
+  responses:
+    InternalServerError:
+      description: Internal server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request — the payload was rejected.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Not found — the endpoint or resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Forbidden — the API key does not have permission to perform this action.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    TriangleCreateRequest:
+      type: object
+      required:
+      - triangle_name
+      - triangle_data
+      properties:
+        triangle_name:
+          type: string
+          description: Name to store the triangle under.
+        triangle_data:
+          type: object
+          description: Bermuda triangle dictionary representation (`bermuda.Triangle.to_dict()`).
+          additionalProperties: true
+        overwrite:
+          type: boolean
+          default: false
+          description: Replace an existing triangle of the same name.
+    Error:
+      type: object
+      description: 'Error envelope. The client surfaces the decoded JSON body verbatim in the raised
+
+        HTTPError message; the exact field names are not documented by the provider.
+
+        '
+      additionalProperties: true
+    PaginatedTriangleList:
+      allOf:
+      - $ref: '#/components/schemas/Pagination'
+      - type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/components/schemas/Triangle'
+    Pagination:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Total number of matching objects.
+        next:
+          type:
+          - string
+          - 'null'
+          description: URL of the next page, when present.
+        previous:
+          type:
+          - string
+          - 'null'
+          description: URL of the previous page, when present.
     Triangle:
       type: object
       description: An insurance loss triangle resource.
@@ -131,98 +223,6 @@ components:
           - 'null'
           format: uri
           description: Pre-signed download URL returned in place of inline data for large triangles.
-    Error:
-      type: object
-      description: 'Error envelope. The client surfaces the decoded JSON body verbatim in the raised
-
-        HTTPError message; the exact field names are not documented by the provider.
-
-        '
-      additionalProperties: true
-    Pagination:
-      type: object
-      properties:
-        count:
-          type: integer
-          description: Total number of matching objects.
-        next:
-          type:
-          - string
-          - 'null'
-          description: URL of the next page, when present.
-        previous:
-          type:
-          - string
-          - 'null'
-          description: URL of the previous page, when present.
-    PaginatedTriangleList:
-      allOf:
-      - $ref: '#/components/schemas/Pagination'
-      - type: object
-        properties:
-          results:
-            type: array
-            items:
-              $ref: '#/components/schemas/Triangle'
-    TriangleCreateRequest:
-      type: object
-      required:
-      - triangle_name
-      - triangle_data
-      properties:
-        triangle_name:
-          type: string
-          description: Name to store the triangle under.
-        triangle_data:
-          type: object
-          description: Bermuda triangle dictionary representation (`bermuda.Triangle.to_dict()`).
-          additionalProperties: true
-        overwrite:
-          type: boolean
-          default: false
-          description: Replace an existing triangle of the same name.
-  parameters:
-    Limit:
-      name: limit
-      in: query
-      required: false
-      description: Maximum number of results to return per page.
-      schema:
-        type: integer
-        default: 25
-        minimum: 1
-    ResourceId:
-      name: id
-      in: path
-      required: true
-      description: Identifier of the resource.
-      schema:
-        type: string
-  responses:
-    Forbidden:
-      description: Forbidden — the API key does not have permission to perform this action.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request — the payload was rejected.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Not found — the endpoint or resource does not exist.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    InternalServerError:
-      description: Internal server error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
