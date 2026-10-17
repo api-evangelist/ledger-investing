@@ -110,49 +110,43 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
 components:
-  parameters:
-    Limit:
-      name: limit
-      in: query
-      required: false
-      description: Maximum number of results to return per page.
-      schema:
-        type: integer
-        default: 25
-        minimum: 1
-    ResourceId:
-      name: id
-      in: path
-      required: true
-      description: Identifier of the resource.
-      schema:
-        type: string
-  responses:
-    InternalServerError:
-      description: Internal server error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request — the payload was rejected.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Not found — the endpoint or resource does not exist.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: Forbidden — the API key does not have permission to perform this action.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    Triangle:
+      type: object
+      description: An insurance loss triangle resource.
+      properties:
+        id:
+          type: string
+          description: Triangle identifier.
+        name:
+          type: string
+          description: Triangle name, unique per account.
+        triangle_data:
+          type: object
+          description: Bermuda triangle dictionary representation.
+          additionalProperties: true
+        url:
+          type:
+          - string
+          - 'null'
+          format: uri
+          description: Pre-signed download URL returned in place of inline data for large triangles.
+    Pagination:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Total number of matching objects.
+        next:
+          type:
+          - string
+          - 'null'
+          description: URL of the next page, when present.
+        previous:
+          type:
+          - string
+          - 'null'
+          description: URL of the previous page, when present.
     TriangleCreateRequest:
       type: object
       required:
@@ -187,42 +181,48 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/Triangle'
-    Pagination:
-      type: object
-      properties:
-        count:
-          type: integer
-          description: Total number of matching objects.
-        next:
-          type:
-          - string
-          - 'null'
-          description: URL of the next page, when present.
-        previous:
-          type:
-          - string
-          - 'null'
-          description: URL of the previous page, when present.
-    Triangle:
-      type: object
-      description: An insurance loss triangle resource.
-      properties:
-        id:
-          type: string
-          description: Triangle identifier.
-        name:
-          type: string
-          description: Triangle name, unique per account.
-        triangle_data:
-          type: object
-          description: Bermuda triangle dictionary representation.
-          additionalProperties: true
-        url:
-          type:
-          - string
-          - 'null'
-          format: uri
-          description: Pre-signed download URL returned in place of inline data for large triangles.
+  responses:
+    NotFound:
+      description: Not found — the endpoint or resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request — the payload was rejected.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalServerError:
+      description: Internal server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Forbidden — the API key does not have permission to perform this action.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Maximum number of results to return per page.
+      schema:
+        type: integer
+        default: 25
+        minimum: 1
+    ResourceId:
+      name: id
+      in: path
+      required: true
+      description: Identifier of the resource.
+      schema:
+        type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
