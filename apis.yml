@@ -205,6 +205,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/ledger-investing/overview
 - type: CapabilityMap
   url: capabilities/ledger-investing-capability-edges.yml
   name: Ledger Investing Business Capability Map
