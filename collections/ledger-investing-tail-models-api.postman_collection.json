@@ -1,116 +1,606 @@
 {
+  "info": {
+    "_postman_id": "0d0cdc9e-1280-4d5b-90f5-d4f1a57beb22",
+    "name": "Ledger Analytics Tail Models API",
+    "description": "The Ledger Analytics API provides remote compute access to Bayesian actuarial models\nfor insurance loss triangles.\n\nContact Support:\n Name: Ledger Analytics\n Email: analytics@ledgerinvesting.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T21:20:00.000Z",
+    "updatedAt": "2026-10-21T21:20:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0d0cdc9e-1280-4d5b-90f5-d4f1a57beb22"
+  },
   "item": [
     {
-      "id": "6002be7f-c9d6-42c9-afeb-6565ac7ae79d",
-      "name": "Tail Models",
-      "description": {
-        "content": "Tail development models (GeneralizedBondy, Sherman, ClassicalPowerTransformTail).",
-        "type": "text/plain"
-      },
+      "name": "tail-model",
       "item": [
         {
-          "id": "bcf75a19-4d64-46cf-b810-d7f29b4b0d82",
-          "name": "List tail models",
-          "request": {
-            "name": "List tail models",
-            "description": {},
-            "url": {
-              "path": [
-                "tail-model"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
+          "name": "{id}",
+          "item": [
+            {
+              "name": "predict",
+              "item": [
                 {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "25",
-                  "description": "Maximum number of results to return per page."
+                  "name": "Predict from a tail model",
+                  "id": "b788350c-1838-43f9-aaeb-ba65d633a663",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"triangle_name\": \"<string>\",\n  \"prediction_name\": \"<string>\",\n  \"overwrite\": false,\n  \"predict_config\": {\n    \"target_triangle\": \"<string>\",\n    \"elit_6\": \"quis dolore aliqua dolor\",\n    \"Lorem_6\": 76076107\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/tail-model/:id/predict",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tail-model",
+                        ":id",
+                        "predict"
+                      ],
+                      "variable": [
+                        {
+                          "id": "55d11de2-ca0e-43f8-a4ab-20ee28156966",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Identifier of the resource."
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "d6f046dc-4947-49bf-ab8f-cb26bdc28b2c",
+                      "name": "Predict task accepted.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"triangle_name\": \"<string>\",\n  \"prediction_name\": \"<string>\",\n  \"overwrite\": false,\n  \"predict_config\": {\n    \"target_triangle\": \"<string>\",\n    \"elit_6\": \"quis dolore aliqua dolor\",\n    \"Lorem_6\": 76076107\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/tail-model/:id/predict",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tail-model",
+                            ":id",
+                            "predict"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"predictions\": \"<string>\",\n  \"modal_task\": {\n    \"id\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-21T21:20:00.000Z",
+                      "updatedAt": "2026-10-21T21:20:00.000Z",
+                      "uid": "35240-d6f046dc-4947-49bf-ab8f-cb26bdc28b2c"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T21:20:00.000Z",
+                  "updatedAt": "2026-10-21T21:20:00.000Z",
+                  "uid": "35240-b788350c-1838-43f9-aaeb-ba65d633a663"
                 }
               ],
-              "variable": []
+              "id": "19a4d482-149d-40fa-8ec0-7febdb37d449",
+              "createdAt": "2026-10-21T21:20:00.000Z",
+              "updatedAt": "2026-10-21T21:20:00.000Z",
+              "uid": "35240-19a4d482-149d-40fa-8ec0-7febdb37d449"
             },
+            {
+              "name": "terminate",
+              "item": [
+                {
+                  "name": "Terminate a running tail model task",
+                  "id": "102a4715-1728-4f2a-ab67-1b288209a29c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tail-model/:id/terminate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tail-model",
+                        ":id",
+                        "terminate"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c016649d-0a47-49eb-98bf-b7d5fd25cd02",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Identifier of the resource."
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "0eb51ef4-4f49-4c14-832e-e489b036c22a",
+                      "name": "Termination requested.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/tail-model/:id/terminate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tail-model",
+                            ":id",
+                            "terminate"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"task_response\": {\n    \"status\": \"<string>\",\n    \"error\": \"<string,null>\",\n    \"magna_f9\": -15238378.443021536\n  }\n}",
+                      "createdAt": "2026-10-21T21:20:00.000Z",
+                      "updatedAt": "2026-10-21T21:20:00.000Z",
+                      "uid": "35240-0eb51ef4-4f49-4c14-832e-e489b036c22a"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T21:20:00.000Z",
+                  "updatedAt": "2026-10-21T21:20:00.000Z",
+                  "uid": "35240-102a4715-1728-4f2a-ab67-1b288209a29c"
+                }
+              ],
+              "id": "faf8be1e-bd38-4e5b-99ac-d91f1f919493",
+              "createdAt": "2026-10-21T21:20:00.000Z",
+              "updatedAt": "2026-10-21T21:20:00.000Z",
+              "uid": "35240-faf8be1e-bd38-4e5b-99ac-d91f1f919493"
+            },
+            {
+              "name": "Retrieve a tail model",
+              "id": "733ea56b-b9b1-4611-8dd6-72cdc51c70ec",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/tail-model/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tail-model",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "96c0a676-52d9-445c-b529-b1e2a4220f2c",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Identifier of the resource."
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "579e4783-ec13-4b90-bbd3-183a20f3b77c",
+                  "name": "The model.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tail-model/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tail-model",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"triangle\": {\n    \"name\": \"<string>\"\n  },\n  \"modal_task_info\": {\n    \"task_args\": {\n      \"model_type\": \"<string>\",\n      \"model_config\": {\n        \"velit4ac\": -97260704,\n        \"veniam83\": \"cillum Lorem id Duis\",\n        \"ut_11a\": -1000767.8540773243\n      }\n    }\n  }\n}",
+                  "createdAt": "2026-10-21T21:20:00.000Z",
+                  "updatedAt": "2026-10-21T21:20:00.000Z",
+                  "uid": "35240-579e4783-ec13-4b90-bbd3-183a20f3b77c"
+                },
+                {
+                  "id": "23711c87-ba49-4184-9db0-a58a92523bb3",
+                  "name": "Not found \u2014 the endpoint or resource does not exist.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tail-model/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tail-model",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"voluptate070\": -12691757,\n  \"eu_47\": true\n}",
+                  "createdAt": "2026-10-21T21:20:00.000Z",
+                  "updatedAt": "2026-10-21T21:20:00.000Z",
+                  "uid": "35240-23711c87-ba49-4184-9db0-a58a92523bb3"
+                }
+              ],
+              "createdAt": "2026-10-21T21:20:00.000Z",
+              "updatedAt": "2026-10-21T21:20:00.000Z",
+              "uid": "35240-733ea56b-b9b1-4611-8dd6-72cdc51c70ec"
+            },
+            {
+              "name": "Delete a tail model",
+              "id": "d7e4816d-3dc7-4ae7-9ca7-b5e25cdd1139",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/tail-model/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tail-model",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "81f6e20e-b6f4-4228-accf-530ea54cc183",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Identifier of the resource."
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "0b2d3f92-1711-448d-a217-4766aa93db2a",
+                  "name": "Model deleted.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tail-model/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tail-model",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-21T21:20:00.000Z",
+                  "updatedAt": "2026-10-21T21:20:00.000Z",
+                  "uid": "35240-0b2d3f92-1711-448d-a217-4766aa93db2a"
+                },
+                {
+                  "id": "ba7626e5-d933-4f7b-9f5c-142b5a8e9a3c",
+                  "name": "Not found \u2014 the endpoint or resource does not exist.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tail-model/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tail-model",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"voluptate070\": -12691757,\n  \"eu_47\": true\n}",
+                  "createdAt": "2026-10-21T21:20:00.000Z",
+                  "updatedAt": "2026-10-21T21:20:00.000Z",
+                  "uid": "35240-ba7626e5-d933-4f7b-9f5c-142b5a8e9a3c"
+                }
+              ],
+              "createdAt": "2026-10-21T21:20:00.000Z",
+              "updatedAt": "2026-10-21T21:20:00.000Z",
+              "uid": "35240-d7e4816d-3dc7-4ae7-9ca7-b5e25cdd1139"
+            }
+          ],
+          "id": "befc463f-aed0-4902-9c07-80a930ea3ec3",
+          "createdAt": "2026-10-21T21:20:00.000Z",
+          "updatedAt": "2026-10-21T21:20:00.000Z",
+          "uid": "35240-befc463f-aed0-4902-9c07-80a930ea3ec3"
+        },
+        {
+          "name": "List tail models",
+          "id": "1ab67756-0af8-492d-8736-e93f219c30d0",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
             "header": [
               {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "GET",
-            "auth": null
+            "url": {
+              "raw": "{{baseUrl}}/tail-model?limit=25",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tail-model"
+              ],
+              "query": [
+                {
+                  "description": "Maximum number of results to return per page.",
+                  "key": "limit",
+                  "value": "25"
+                }
+              ]
+            }
           },
           "response": [
             {
-              "id": "af1f90cf-e034-47c5-9fab-f4ce83d501ef",
+              "id": "f35da7c8-184b-4e94-8fa8-36af4d5a9d69",
               "name": "Paginated list of tail models.",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "tail-model"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "limit",
-                      "value": "25"
-                    }
-                  ],
-                  "variable": []
-                },
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/tail-model?limit=25",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tail-model"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return per page.",
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"count\": 1093,\n  \"next\": \"string\",\n  \"previous\": \"string\",\n  \"results\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"triangle\": {\n        \"name\": \"string\"\n      },\n      \"modal_task_info\": {\n        \"task_args\": {\n          \"model_type\": \"string\",\n          \"model_config\": {\n            \"key_0\": 603.4529752077278\n          }\n        }\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"triangle\": {\n        \"name\": \"string\"\n      },\n      \"modal_task_info\": {\n        \"task_args\": {\n          \"model_type\": \"string\",\n          \"model_config\": {\n            \"key_0\": 5552.347455762747\n          }\n        }\n      }\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"count\": \"<integer>\",\n  \"next\": \"<string,null>\",\n  \"previous\": \"<string,null>\",\n  \"results\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"triangle\": {\n        \"name\": \"<string>\"\n      },\n      \"modal_task_info\": {\n        \"task_args\": {\n          \"model_type\": \"<string>\",\n          \"model_config\": {\n            \"deserunt491\": 72088807.96902859\n          }\n        }\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"triangle\": {\n        \"name\": \"<string>\"\n      },\n      \"modal_task_info\": {\n        \"task_args\": {\n          \"model_type\": \"<string>\",\n          \"model_config\": {\n            \"commodo0\": -75623665.27085054,\n            \"occaecatd\": true\n          }\n        }\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-10-21T21:20:00.000Z",
+              "updatedAt": "2026-10-21T21:20:00.000Z",
+              "uid": "35240-f35da7c8-184b-4e94-8fa8-36af4d5a9d69"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-21T21:20:00.000Z",
+          "updatedAt": "2026-10-21T21:20:00.000Z",
+          "uid": "35240-1ab67756-0af8-492d-8736-e93f219c30d0"
         },
         {
-          "id": "58425bbd-2b23-4d1d-b357-6ec7827fe57a",
           "name": "Fit a tail model",
+          "id": "03edd20c-fdb8-4e84-bdd8-8205b01ce4f2",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Fit a tail model",
-            "description": {},
-            "url": {
-              "path": [
-                "tail-model"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
+            "method": "POST",
             "header": [
               {
                 "key": "Content-Type",
@@ -121,709 +611,230 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"triangle_name\": \"<string>\",\n  \"model_name\": \"<string>\",\n  \"model_type\": \"<string>\",\n  \"overwrite\": false,\n  \"model_config\": {\n    \"key_0\": false,\n    \"key_1\": true\n  }\n}",
+              "raw": "{\n  \"triangle_name\": \"<string>\",\n  \"model_name\": \"<string>\",\n  \"model_type\": \"<string>\",\n  \"overwrite\": false,\n  \"model_config\": {\n    \"laborum_8\": \"aliquip ullamco\"\n  }\n}",
               "options": {
                 "raw": {
+                  "headerFamily": "json",
                   "language": "json"
                 }
               }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tail-model",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tail-model"
+              ]
             }
           },
           "response": [
             {
-              "id": "3d5c8940-39a3-4e47-b386-1f07bc9f7fc7",
+              "id": "27062228-5c92-46ed-ae5f-bf2a41c1b5ce",
               "name": "Fit task accepted.",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "tail-model"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"triangle_name\": \"<string>\",\n  \"model_name\": \"<string>\",\n  \"model_type\": \"ChainLadder\",\n  \"overwrite\": false,\n  \"model_config\": {\n    \"key_0\": false,\n    \"key_1\": \"string\"\n  }\n}",
+                  "raw": "{\n  \"triangle_name\": \"<string>\",\n  \"model_name\": \"<string>\",\n  \"model_type\": \"<string>\",\n  \"overwrite\": false,\n  \"model_config\": {\n    \"laborum_8\": \"aliquip ullamco\"\n  }\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/tail-model",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tail-model"
+                  ]
                 }
               },
               "status": "Created",
               "code": 201,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"model\": {\n    \"id\": \"string\"\n  },\n  \"modal_task\": {\n    \"id\": \"string\"\n  }\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"model\": {\n    \"id\": \"<string>\"\n  },\n  \"modal_task\": {\n    \"id\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-10-21T21:20:00.000Z",
+              "updatedAt": "2026-10-21T21:20:00.000Z",
+              "uid": "35240-27062228-5c92-46ed-ae5f-bf2a41c1b5ce"
             },
             {
-              "id": "202671f1-7676-4166-9983-77f02e20525e",
-              "name": "Bad request — the payload was rejected.",
+              "id": "df65edc0-2998-4477-a932-d2e30c8a0b74",
+              "name": "Bad request \u2014 the payload was rejected.",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "tail-model"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"triangle_name\": \"<string>\",\n  \"model_name\": \"<string>\",\n  \"model_type\": \"ChainLadder\",\n  \"overwrite\": false,\n  \"model_config\": {\n    \"key_0\": false,\n    \"key_1\": \"string\"\n  }\n}",
+                  "raw": "{\n  \"triangle_name\": \"<string>\",\n  \"model_name\": \"<string>\",\n  \"model_type\": \"<string>\",\n  \"overwrite\": false,\n  \"model_config\": {\n    \"laborum_8\": \"aliquip ullamco\"\n  }\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/tail-model",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tail-model"
+                  ]
                 }
               },
               "status": "Bad Request",
               "code": 400,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"key_0\": 4494,\n  \"key_1\": 8584.77824845126\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"voluptate070\": -12691757,\n  \"eu_47\": true\n}",
+              "createdAt": "2026-10-21T21:20:00.000Z",
+              "updatedAt": "2026-10-21T21:20:00.000Z",
+              "uid": "35240-df65edc0-2998-4477-a932-d2e30c8a0b74"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "6f3e05c3-dbc4-4b49-a9af-2541ba5c2e18",
-          "name": "List available tail model types",
-          "request": {
-            "name": "List available tail model types",
-            "description": {},
-            "url": {
-              "path": [
-                "tail-model-type"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "8ab97b1a-f8be-4866-af43-466f4ab4820e",
-              "name": "Available model types.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "tail-model-type"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"key_0\": 3018.1766589363147\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "323afa8d-2a7f-469a-a99d-82aa958da4ee",
-          "name": "Retrieve a tail model",
-          "request": {
-            "name": "Retrieve a tail model",
-            "description": {},
-            "url": {
-              "path": [
-                "tail-model",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Identifier of the resource."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "8a0469d1-925d-4ee2-8cbf-69439d9d2535",
-              "name": "The model.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "tail-model",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"triangle\": {\n    \"name\": \"string\"\n  },\n  \"modal_task_info\": {\n    \"task_args\": {\n      \"model_type\": \"string\",\n      \"model_config\": {\n        \"key_0\": 6830.539766147931,\n        \"key_1\": 9321.216877413215\n      }\n    }\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "c23cc47b-c348-49d5-9088-111a64da16a4",
-              "name": "Not found — the endpoint or resource does not exist.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "tail-model",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"key_0\": 4494,\n  \"key_1\": 8584.77824845126\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "3b6597ee-d78f-44dd-bed4-52959338f991",
-          "name": "Delete a tail model",
-          "request": {
-            "name": "Delete a tail model",
-            "description": {},
-            "url": {
-              "path": [
-                "tail-model",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Identifier of the resource."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "d23c6cf6-4428-492e-a201-d6ae219e677e",
-              "name": "Model deleted.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "tail-model",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "80ab054b-1f18-4d85-aa75-6bb14c0e8ad1",
-              "name": "Not found — the endpoint or resource does not exist.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "tail-model",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"key_0\": 4494,\n  \"key_1\": 8584.77824845126\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "05083fdd-beb2-4a41-aa26-5f7ddb3a10fa",
-          "name": "Predict from a tail model",
-          "request": {
-            "name": "Predict from a tail model",
-            "description": {},
-            "url": {
-              "path": [
-                "tail-model",
-                ":id",
-                "predict"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Identifier of the resource."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"triangle_name\": \"<string>\",\n  \"prediction_name\": \"<string>\",\n  \"overwrite\": false,\n  \"predict_config\": {\n    \"target_triangle\": \"<string>\"\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "774e9801-6678-4805-880c-919857bb5ef9",
-              "name": "Predict task accepted.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "tail-model",
-                    ":id",
-                    "predict"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"triangle_name\": \"<string>\",\n  \"prediction_name\": \"<string>\",\n  \"overwrite\": false,\n  \"predict_config\": {\n    \"target_triangle\": \"<string>\",\n    \"key_0\": 8247\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"predictions\": \"string\",\n  \"modal_task\": {\n    \"id\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "1600db72-0131-4cdf-a356-072d7ca2833b",
-          "name": "Terminate a running tail model task",
-          "request": {
-            "name": "Terminate a running tail model task",
-            "description": {},
-            "url": {
-              "path": [
-                "tail-model",
-                ":id",
-                "terminate"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Identifier of the resource."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "c69d8e36-1eb8-43fa-960e-e62077b06c2c",
-              "name": "Termination requested.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "tail-model",
-                    ":id",
-                    "terminate"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"status\": \"string\",\n  \"task_response\": {\n    \"status\": \"string\",\n    \"error\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-21T21:20:00.000Z",
+          "updatedAt": "2026-10-21T21:20:00.000Z",
+          "uid": "35240-03edd20c-fdb8-4e84-bdd8-8205b01ce4f2"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
+      "id": "acfff882-2804-4dc5-97d1-be98e39c6ba6",
+      "createdAt": "2026-10-21T21:20:00.000Z",
+      "updatedAt": "2026-10-21T21:20:00.000Z",
+      "uid": "35240-acfff882-2804-4dc5-97d1-be98e39c6ba6"
+    },
     {
-      "type": "string",
-      "value": "https://api.korra.com/analytics",
-      "key": "baseUrl"
+      "name": "tail-model-type",
+      "item": [
+        {
+          "name": "List available tail model types",
+          "id": "b142b0e6-e9cd-487c-a7ce-2a6665541109",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tail-model-type",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tail-model-type"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a1ed0fd4-a5b4-4471-8889-f2e9e1cb5831",
+              "name": "Available model types.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/tail-model-type",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tail-model-type"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"ullamco8\": -82476071.19406042\n}",
+              "createdAt": "2026-10-21T21:20:00.000Z",
+              "updatedAt": "2026-10-21T21:20:00.000Z",
+              "uid": "35240-a1ed0fd4-a5b4-4471-8889-f2e9e1cb5831"
+            }
+          ],
+          "createdAt": "2026-10-21T21:20:00.000Z",
+          "updatedAt": "2026-10-21T21:20:00.000Z",
+          "uid": "35240-b142b0e6-e9cd-487c-a7ce-2a6665541109"
+        }
+      ],
+      "id": "404b749c-b235-47fd-ad55-cc3aae55b6c4",
+      "createdAt": "2026-10-21T21:20:00.000Z",
+      "updatedAt": "2026-10-21T21:20:00.000Z",
+      "uid": "35240-404b749c-b235-47fd-ad55-cc3aae55b6c4"
     }
   ],
   "auth": {
@@ -831,25 +842,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "Authorization"
+        "value": "Authorization",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "4694ee06-7758-4356-9799-bdceff7fea92",
-    "name": "Ledger Analytics Cashflow Models Tail Models API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Ledger Analytics API provides remote compute access to Bayesian actuarial models\nfor insurance loss triangles. It is operated by Korra Tech, LLC (d/b/a Korra), a wholly\nowned SaaS subsidiary of Ledger Investing, Inc., and is currently in beta.\n\nLoss triangles are uploaded and managed as first-class `triangle` resources. Development,\ntail, forecast and cashflow models are then fit against a named triangle. Fitting and\nprediction are executed as asynchronous remote tasks: the fit/predict call returns a task\nhandle which is polled at `/tasks/{task_id}` until it completes; predictions are written\nback as new triangle resources.\n\nIMPORTANT PROVENANCE NOTE: Ledger/Korra do not publish an OpenAPI description. This\ndocument was DERIVED by API Evangelist from the request construction in the first-party,\nopen-source `ledger-analytics` Python client (github.com/LedgerInvesting/ledger-analytics,\nMIT-licensed, Copyright 2025 Korra, LLC) and from the published documentation. Paths,\nmethods, auth, request-body field names, pagination parameters and error semantics are\ntaken verbatim from that client. Response schemas are partial — only the fields the\nclient actually reads are described. It is not an authoritative provider artifact.\n\n\nContact Support:\n Name: Ledger Analytics\n Email: analytics@ledgerinvesting.com",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.korra.com/analytics"
     }
-  }
+  ]
 }

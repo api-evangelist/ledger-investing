@@ -1,218 +1,578 @@
 {
+  "info": {
+    "_postman_id": "51f60b0c-97d4-4919-8a39-2d874ead1b51",
+    "name": "Ledger Analytics Triangles API",
+    "description": "The Ledger Analytics API provides remote compute access to Bayesian actuarial models\nfor insurance loss triangles.\n\nContact Support:\n Name: Ledger Analytics\n Email: analytics@ledgerinvesting.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T21:20:12.000Z",
+    "updatedAt": "2026-10-21T21:20:13.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-51f60b0c-97d4-4919-8a39-2d874ead1b51"
+  },
   "item": [
     {
-      "id": "61c9971d-5fe2-4fc8-84e9-da9ef31f45e3",
-      "name": "Triangles",
-      "description": {
-        "content": "Upload, list, retrieve and delete insurance loss triangles.",
-        "type": "text/plain"
-      },
+      "name": "triangle",
       "item": [
         {
-          "id": "6cb9805c-abce-42c1-bd83-49c825128dd5",
-          "name": "List triangles",
-          "request": {
-            "name": "List triangles",
-            "description": {
-              "content": "Returns a paginated list of loss triangles belonging to the authenticated account.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "triangle"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Retrieve a triangle",
+              "id": "01a92c61-e4d9-4398-95b1-03ac76e5d3db",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/triangle/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "triangle",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "efa5d5a0-7972-4033-9ec6-0186d2915f91",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Identifier of the resource."
+                    }
+                  ]
+                },
+                "description": "Retrieves a triangle by id. For large triangles the response carries a `url`\nfield with a pre-signed download location instead of an inline `triangle_data`\npayload; the client follows that URL and streams the content."
+              },
+              "response": [
                 {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "25",
-                  "description": "Maximum number of results to return per page."
+                  "id": "b48ba4c9-c123-443c-a244-a9771b59b32d",
+                  "name": "The triangle.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/triangle/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "triangle",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"triangle_data\": {\n    \"officia_32a\": false,\n    \"Lorem9e9\": true,\n    \"est487\": 29036207.675316423\n  },\n  \"url\": \"<string,null-uri>\"\n}",
+                  "createdAt": "2026-10-21T21:20:13.000Z",
+                  "updatedAt": "2026-10-21T21:20:13.000Z",
+                  "uid": "35240-b48ba4c9-c123-443c-a244-a9771b59b32d"
+                },
+                {
+                  "id": "2f167182-0444-493f-a4ac-ead184207938",
+                  "name": "Forbidden \u2014 the API key does not have permission to perform this action.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/triangle/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "triangle",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"Excepteur9\": false\n}",
+                  "createdAt": "2026-10-21T21:20:13.000Z",
+                  "updatedAt": "2026-10-21T21:20:13.000Z",
+                  "uid": "35240-2f167182-0444-493f-a4ac-ead184207938"
+                },
+                {
+                  "id": "33f8eac5-f2da-42dd-9596-d06e357f3738",
+                  "name": "Not found \u2014 the endpoint or resource does not exist.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/triangle/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "triangle",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"Excepteur9\": false\n}",
+                  "createdAt": "2026-10-21T21:20:13.000Z",
+                  "updatedAt": "2026-10-21T21:20:13.000Z",
+                  "uid": "35240-33f8eac5-f2da-42dd-9596-d06e357f3738"
                 }
               ],
-              "variable": []
+              "createdAt": "2026-10-21T21:20:13.000Z",
+              "updatedAt": "2026-10-21T21:20:13.000Z",
+              "uid": "35240-01a92c61-e4d9-4398-95b1-03ac76e5d3db"
             },
+            {
+              "name": "Delete a triangle",
+              "id": "21005b1f-f17f-4fe5-ad64-221c10497439",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/triangle/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "triangle",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "4922e33f-5710-4195-90a6-988ba4fb764b",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Identifier of the resource."
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "402baa5e-f648-4c21-9268-4a97f14770c6",
+                  "name": "Triangle deleted.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/triangle/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "triangle",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-21T21:20:13.000Z",
+                  "updatedAt": "2026-10-21T21:20:13.000Z",
+                  "uid": "35240-402baa5e-f648-4c21-9268-4a97f14770c6"
+                },
+                {
+                  "id": "1f8f6f5f-b360-4584-9662-6c0f8bbf0ef1",
+                  "name": "Forbidden \u2014 the API key does not have permission to perform this action.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/triangle/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "triangle",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"Excepteur9\": false\n}",
+                  "createdAt": "2026-10-21T21:20:13.000Z",
+                  "updatedAt": "2026-10-21T21:20:13.000Z",
+                  "uid": "35240-1f8f6f5f-b360-4584-9662-6c0f8bbf0ef1"
+                },
+                {
+                  "id": "4de3b2f0-1d21-4203-80b0-e0efc898d6b6",
+                  "name": "Not found \u2014 the endpoint or resource does not exist.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/triangle/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "triangle",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"Excepteur9\": false\n}",
+                  "createdAt": "2026-10-21T21:20:13.000Z",
+                  "updatedAt": "2026-10-21T21:20:13.000Z",
+                  "uid": "35240-4de3b2f0-1d21-4203-80b0-e0efc898d6b6"
+                }
+              ],
+              "createdAt": "2026-10-21T21:20:13.000Z",
+              "updatedAt": "2026-10-21T21:20:13.000Z",
+              "uid": "35240-21005b1f-f17f-4fe5-ad64-221c10497439"
+            }
+          ],
+          "id": "727fbdb6-31c7-41a3-bbc2-fb251ba12e01",
+          "createdAt": "2026-10-21T21:20:13.000Z",
+          "updatedAt": "2026-10-21T21:20:13.000Z",
+          "uid": "35240-727fbdb6-31c7-41a3-bbc2-fb251ba12e01"
+        },
+        {
+          "name": "List triangles",
+          "id": "960d226a-813c-4195-a6d6-69410bc9e517",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
             "header": [
               {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "db88ec85-fe15-44e4-b8d6-3690ea38dd91",
-              "name": "Paginated list of triangles.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "triangle"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "limit",
-                      "value": "25"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"count\": 6834,\n  \"next\": \"string\",\n  \"previous\": \"string\",\n  \"results\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"triangle_data\": {\n        \"key_0\": true\n      },\n      \"url\": \"https://LOdVoLFiCmjHSLEqUmEgP.cbyZmYbBbfivsppfwYd8CYtfBksRPpVzwbVV\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"triangle_data\": {\n        \"key_0\": 3675.6543302555556\n      },\n      \"url\": \"https://tDLmpVtURcWZujvXIMlRlaz.vybbpqKEjVEcNOn3W\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "0fa2b363-e7ea-4b7e-ada1-2c4bd2b9da80",
-              "name": "Forbidden — the API key does not have permission to perform this action.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "triangle"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "limit",
-                      "value": "25"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"key_0\": true,\n  \"key_1\": \"string\",\n  \"key_2\": 2821.4441717567197\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "033bf2e5-4329-438a-906b-8e2541d9d701",
-              "name": "Internal server error.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "triangle"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "limit",
-                      "value": "25"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"key_0\": true,\n  \"key_1\": \"string\",\n  \"key_2\": 2821.4441717567197\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "91b5f011-d385-41e0-a659-321405562e9d",
-          "name": "Create a triangle",
-          "request": {
-            "name": "Create a triangle",
-            "description": {
-              "content": "Uploads a loss triangle. `triangle_data` is the Bermuda triangle dictionary\nrepresentation (`bermuda.Triangle.to_dict()`). Set `overwrite` to replace an\nexisting triangle of the same name — the upsert semantic used by the client's\n`get_or_create` / `get_or_update` helpers.\n",
-              "type": "text/plain"
-            },
             "url": {
-              "path": [
-                "triangle"
-              ],
+              "raw": "{{baseUrl}}/triangle?limit=25",
               "host": [
                 "{{baseUrl}}"
               ],
-              "query": [],
-              "variable": []
+              "path": [
+                "triangle"
+              ],
+              "query": [
+                {
+                  "description": "Maximum number of results to return per page.",
+                  "key": "limit",
+                  "value": "25"
+                }
+              ]
             },
+            "description": "Returns a paginated list of loss triangles belonging to the authenticated account."
+          },
+          "response": [
+            {
+              "id": "999c3b0f-42ed-4cc2-bfef-e66bb094b558",
+              "name": "Paginated list of triangles.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/triangle?limit=25",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "triangle"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return per page.",
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"count\": \"<integer>\",\n  \"next\": \"<string,null>\",\n  \"previous\": \"<string,null>\",\n  \"results\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"triangle_data\": {\n        \"do5fc\": 92450682,\n        \"esse8\": 59725667.93484998\n      },\n      \"url\": \"<string,null-uri>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"triangle_data\": {\n        \"elit1c5\": 79703410.04646131\n      },\n      \"url\": \"<string,null-uri>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-21T21:20:13.000Z",
+              "updatedAt": "2026-10-21T21:20:13.000Z",
+              "uid": "35240-999c3b0f-42ed-4cc2-bfef-e66bb094b558"
+            },
+            {
+              "id": "ad5a2934-62e8-4ec7-be72-51a79963d16c",
+              "name": "Forbidden \u2014 the API key does not have permission to perform this action.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/triangle?limit=25",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "triangle"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return per page.",
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"Excepteur9\": false\n}",
+              "createdAt": "2026-10-21T21:20:13.000Z",
+              "updatedAt": "2026-10-21T21:20:13.000Z",
+              "uid": "35240-ad5a2934-62e8-4ec7-be72-51a79963d16c"
+            },
+            {
+              "id": "4938fbcf-5253-4078-88bb-263859232df2",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/triangle?limit=25",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "triangle"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return per page.",
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"Excepteur9\": false\n}",
+              "createdAt": "2026-10-21T21:20:13.000Z",
+              "updatedAt": "2026-10-21T21:20:13.000Z",
+              "uid": "35240-4938fbcf-5253-4078-88bb-263859232df2"
+            }
+          ],
+          "createdAt": "2026-10-21T21:20:13.000Z",
+          "updatedAt": "2026-10-21T21:20:13.000Z",
+          "uid": "35240-960d226a-813c-4195-a6d6-69410bc9e517"
+        },
+        {
+          "name": "Create a triangle",
+          "id": "9a103b99-3106-4b3c-92a7-48acc9955f0e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
             "header": [
               {
                 "key": "Content-Type",
@@ -223,632 +583,262 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"triangle_name\": \"<string>\",\n  \"triangle_data\": {\n    \"key_0\": \"string\",\n    \"key_1\": 741\n  },\n  \"overwrite\": false\n}",
+              "raw": "{\n  \"triangle_name\": \"<string>\",\n  \"triangle_data\": {\n    \"dolore\": true\n  },\n  \"overwrite\": false\n}",
               "options": {
                 "raw": {
+                  "headerFamily": "json",
                   "language": "json"
                 }
               }
-            }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/triangle",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "triangle"
+              ]
+            },
+            "description": "Uploads a loss triangle. `triangle_data` is the Bermuda triangle dictionary\nrepresentation (`bermuda.Triangle.to_dict()`). Set `overwrite` to replace an\nexisting triangle of the same name \u2014 the upsert semantic used by the client's\n`get_or_create` / `get_or_update` helpers."
           },
           "response": [
             {
-              "id": "e73a2221-1cb5-43f2-be03-0b91784a7233",
+              "id": "760f91c8-9803-4fa5-b7ad-5fbe2ffc7652",
               "name": "Triangle created.",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "triangle"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"triangle_name\": \"<string>\",\n  \"triangle_data\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"overwrite\": false\n}",
+                  "raw": "{\n  \"triangle_name\": \"<string>\",\n  \"triangle_data\": {\n    \"dolore\": true\n  },\n  \"overwrite\": false\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/triangle",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "triangle"
+                  ]
                 }
               },
               "status": "Created",
               "code": 201,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"triangle_data\": {\n    \"key_0\": false\n  },\n  \"url\": \"https://bqnZWYxSfpgRdbBOrOGfWZ.whrP4e3EJDfvZjBaLtbdfvqWiCVnwnhiXxw7\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"triangle_data\": {\n    \"officia_32a\": false,\n    \"Lorem9e9\": true,\n    \"est487\": 29036207.675316423\n  },\n  \"url\": \"<string,null-uri>\"\n}",
+              "createdAt": "2026-10-21T21:20:13.000Z",
+              "updatedAt": "2026-10-21T21:20:13.000Z",
+              "uid": "35240-760f91c8-9803-4fa5-b7ad-5fbe2ffc7652"
             },
             {
-              "id": "b1de327c-1e84-462c-960c-ad5624eaeec3",
-              "name": "Bad request — the payload was rejected.",
+              "id": "05a22ab3-6b6b-4715-a435-635629d577aa",
+              "name": "Bad request \u2014 the payload was rejected.",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "triangle"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"triangle_name\": \"<string>\",\n  \"triangle_data\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"overwrite\": false\n}",
+                  "raw": "{\n  \"triangle_name\": \"<string>\",\n  \"triangle_data\": {\n    \"dolore\": true\n  },\n  \"overwrite\": false\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/triangle",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "triangle"
+                  ]
                 }
               },
               "status": "Bad Request",
               "code": 400,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"key_0\": true,\n  \"key_1\": \"string\",\n  \"key_2\": 2821.4441717567197\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"Excepteur9\": false\n}",
+              "createdAt": "2026-10-21T21:20:13.000Z",
+              "updatedAt": "2026-10-21T21:20:13.000Z",
+              "uid": "35240-05a22ab3-6b6b-4715-a435-635629d577aa"
             },
             {
-              "id": "92112c3c-d891-450c-a39d-173aba6e7496",
-              "name": "Forbidden — the API key does not have permission to perform this action.",
+              "id": "df8b9659-2851-4141-9c41-aa2b6b8b7b9a",
+              "name": "Forbidden \u2014 the API key does not have permission to perform this action.",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "triangle"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"triangle_name\": \"<string>\",\n  \"triangle_data\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"overwrite\": false\n}",
+                  "raw": "{\n  \"triangle_name\": \"<string>\",\n  \"triangle_data\": {\n    \"dolore\": true\n  },\n  \"overwrite\": false\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/triangle",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "triangle"
+                  ]
                 }
               },
               "status": "Forbidden",
               "code": 403,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"key_0\": true,\n  \"key_1\": \"string\",\n  \"key_2\": 2821.4441717567197\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"Excepteur9\": false\n}",
+              "createdAt": "2026-10-21T21:20:13.000Z",
+              "updatedAt": "2026-10-21T21:20:13.000Z",
+              "uid": "35240-df8b9659-2851-4141-9c41-aa2b6b8b7b9a"
             },
             {
-              "id": "69444bd4-a672-4293-8e40-68e67a72b403",
+              "id": "b9ea613d-15b3-4f5b-835a-1f1d8daf65ad",
               "name": "Internal server error.",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "triangle"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"triangle_name\": \"<string>\",\n  \"triangle_data\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"overwrite\": false\n}",
+                  "raw": "{\n  \"triangle_name\": \"<string>\",\n  \"triangle_data\": {\n    \"dolore\": true\n  },\n  \"overwrite\": false\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/triangle",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "triangle"
+                  ]
                 }
               },
               "status": "Internal Server Error",
               "code": 500,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"key_0\": true,\n  \"key_1\": \"string\",\n  \"key_2\": 2821.4441717567197\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"Excepteur9\": false\n}",
+              "createdAt": "2026-10-21T21:20:13.000Z",
+              "updatedAt": "2026-10-21T21:20:13.000Z",
+              "uid": "35240-b9ea613d-15b3-4f5b-835a-1f1d8daf65ad"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "a993670e-6851-4d78-b05e-5ae6cc7c0663",
-          "name": "Retrieve a triangle",
-          "request": {
-            "name": "Retrieve a triangle",
-            "description": {
-              "content": "Retrieves a triangle by id. For large triangles the response carries a `url`\nfield with a pre-signed download location instead of an inline `triangle_data`\npayload; the client follows that URL and streams the content.\n",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "triangle",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Identifier of the resource."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "34976e5e-dfd1-4cd4-9ec6-d1406d72bb32",
-              "name": "The triangle.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "triangle",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"triangle_data\": {\n    \"key_0\": false\n  },\n  \"url\": \"https://bqnZWYxSfpgRdbBOrOGfWZ.whrP4e3EJDfvZjBaLtbdfvqWiCVnwnhiXxw7\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "c7459560-ea79-4887-85d0-422438b917f9",
-              "name": "Forbidden — the API key does not have permission to perform this action.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "triangle",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"key_0\": true,\n  \"key_1\": \"string\",\n  \"key_2\": 2821.4441717567197\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "b053feb7-d450-40d2-b01a-d051fecb60f5",
-              "name": "Not found — the endpoint or resource does not exist.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "triangle",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"key_0\": true,\n  \"key_1\": \"string\",\n  \"key_2\": 2821.4441717567197\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "23e1d76b-d7e5-4cea-88b3-a9d1fdb5edfe",
-          "name": "Delete a triangle",
-          "request": {
-            "name": "Delete a triangle",
-            "description": {},
-            "url": {
-              "path": [
-                "triangle",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Identifier of the resource."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "bb3c0267-c281-4cf5-bbbe-6659e30ef118",
-              "name": "Triangle deleted.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "triangle",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "6e9a698a-e4f6-4ce0-93fd-1ad3738b433a",
-              "name": "Forbidden — the API key does not have permission to perform this action.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "triangle",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"key_0\": true,\n  \"key_1\": \"string\",\n  \"key_2\": 2821.4441717567197\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "cb4be5ef-3f1d-4ac4-b209-e1cb343231ef",
-              "name": "Not found — the endpoint or resource does not exist.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "triangle",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"key_0\": true,\n  \"key_1\": \"string\",\n  \"key_2\": 2821.4441717567197\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-21T21:20:13.000Z",
+          "updatedAt": "2026-10-21T21:20:13.000Z",
+          "uid": "35240-9a103b99-3106-4b3c-92a7-48acc9955f0e"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.korra.com/analytics",
-      "key": "baseUrl"
+      "id": "ad0698e7-1647-473f-8eda-9fd38cff69e2",
+      "createdAt": "2026-10-21T21:20:13.000Z",
+      "updatedAt": "2026-10-21T21:20:13.000Z",
+      "uid": "35240-ad0698e7-1647-473f-8eda-9fd38cff69e2"
     }
   ],
   "auth": {
@@ -856,25 +846,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "Authorization"
+        "value": "Authorization",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "3d025d99-45d4-445f-ab73-5edcddd712ee",
-    "name": "Ledger Analytics Cashflow Models Triangles API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Ledger Analytics API provides remote compute access to Bayesian actuarial models\nfor insurance loss triangles. It is operated by Korra Tech, LLC (d/b/a Korra), a wholly\nowned SaaS subsidiary of Ledger Investing, Inc., and is currently in beta.\n\nLoss triangles are uploaded and managed as first-class `triangle` resources. Development,\ntail, forecast and cashflow models are then fit against a named triangle. Fitting and\nprediction are executed as asynchronous remote tasks: the fit/predict call returns a task\nhandle which is polled at `/tasks/{task_id}` until it completes; predictions are written\nback as new triangle resources.\n\nIMPORTANT PROVENANCE NOTE: Ledger/Korra do not publish an OpenAPI description. This\ndocument was DERIVED by API Evangelist from the request construction in the first-party,\nopen-source `ledger-analytics` Python client (github.com/LedgerInvesting/ledger-analytics,\nMIT-licensed, Copyright 2025 Korra, LLC) and from the published documentation. Paths,\nmethods, auth, request-body field names, pagination parameters and error semantics are\ntaken verbatim from that client. Response schemas are partial — only the fields the\nclient actually reads are described. It is not an authoritative provider artifact.\n\n\nContact Support:\n Name: Ledger Analytics\n Email: analytics@ledgerinvesting.com",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.korra.com/analytics"
     }
-  }
+  ]
 }

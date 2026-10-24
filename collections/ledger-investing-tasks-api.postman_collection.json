@@ -1,171 +1,168 @@
 {
+  "info": {
+    "_postman_id": "a8d0a9a8-b2fd-4461-9f01-714f39c5667b",
+    "name": "Ledger Analytics Tasks API",
+    "description": "The Ledger Analytics API provides remote compute access to Bayesian actuarial models\nfor insurance loss triangles.\n\nContact Support:\n Name: Ledger Analytics\n Email: analytics@ledgerinvesting.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T21:20:06.000Z",
+    "updatedAt": "2026-10-21T21:20:06.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a8d0a9a8-b2fd-4461-9f01-714f39c5667b"
+  },
   "item": [
     {
-      "id": "35198d34-2c4b-4181-82cd-713ee5e0c857",
-      "name": "Tasks",
-      "description": {
-        "content": "Poll the status of asynchronous fit and predict tasks.",
-        "type": "text/plain"
-      },
+      "name": "tasks",
       "item": [
         {
-          "id": "d1dace96-f57a-4a09-8cd8-0832e8bf0ef5",
-          "name": "Poll an asynchronous task",
-          "request": {
-            "name": "Poll an asynchronous task",
-            "description": {
-              "content": "Polls a fit or predict task. While `task_response` is `null` the task is still\npending; once populated, `task_response.status` is `success` or carries an `error`.\n",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "tasks",
-                ":task_id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "task_id",
-                  "description": "(Required) Identifier of the asynchronous remote task."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "{task_id}",
+          "item": [
             {
-              "id": "238515ff-213a-4ad1-a2b7-0aa83a1db812",
-              "name": "Task state.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "tasks",
-                    ":task_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "task_id",
-                      "description": "(Required) Identifier of the asynchronous remote task."
-                    }
-                  ]
-                },
+              "name": "Poll an asynchronous task",
+              "id": "caf9b09f-e4ad-4317-bacc-f4396a6fa5eb",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"status\": \"string\",\n  \"task_response\": {\n    \"status\": \"string\",\n    \"error\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "02d938be-9f94-4614-9b28-1ef775909b4b",
-              "name": "Not found — the endpoint or resource does not exist.",
-              "originalRequest": {
                 "url": {
+                  "raw": "{{baseUrl}}/tasks/:task_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "tasks",
                     ":task_id"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
                   "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
+                      "id": "25db92f8-eda9-414f-968f-956218206d5b",
                       "key": "task_id",
+                      "value": "<string>",
                       "description": "(Required) Identifier of the asynchronous remote task."
                     }
                   ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Polls a fit or predict task. While `task_response` is `null` the task is still\npending; once populated, `task_response.status` is `success` or carries an `error`."
               },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "b7ed3d04-dedb-41c9-a1d7-41fe02320c48",
+                  "name": "Task state.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tasks/:task_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tasks",
+                        ":task_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "task_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"task_response\": {\n    \"status\": \"<string>\",\n    \"error\": \"<string,null>\",\n    \"in_d2a\": -73982242.33688703,\n    \"culpa_1b\": \"exercitation Ut\",\n    \"anim_e\": 13563443.41029106\n  }\n}",
+                  "createdAt": "2026-10-21T21:20:07.000Z",
+                  "updatedAt": "2026-10-21T21:20:07.000Z",
+                  "uid": "35240-b7ed3d04-dedb-41c9-a1d7-41fe02320c48"
+                },
+                {
+                  "id": "f5c0fe14-cc07-40eb-b91d-453e302eb83d",
+                  "name": "Not found \u2014 the endpoint or resource does not exist.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tasks/:task_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tasks",
+                        ":task_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "task_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"proident_3\": true\n}",
+                  "createdAt": "2026-10-21T21:20:07.000Z",
+                  "updatedAt": "2026-10-21T21:20:07.000Z",
+                  "uid": "35240-f5c0fe14-cc07-40eb-b91d-453e302eb83d"
                 }
               ],
-              "body": "{\n  \"key_0\": 2749,\n  \"key_1\": 5716.298486844635\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-21T21:20:07.000Z",
+              "updatedAt": "2026-10-21T21:20:07.000Z",
+              "uid": "35240-caf9b09f-e4ad-4317-bacc-f4396a6fa5eb"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "43b2b7d4-fa18-4508-a2f8-30babbbba3c9",
+          "createdAt": "2026-10-21T21:20:07.000Z",
+          "updatedAt": "2026-10-21T21:20:07.000Z",
+          "uid": "35240-43b2b7d4-fa18-4508-a2f8-30babbbba3c9"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.korra.com/analytics",
-      "key": "baseUrl"
+      "id": "fd983cd4-7532-4839-9d14-cc30ce6963e0",
+      "createdAt": "2026-10-21T21:20:07.000Z",
+      "updatedAt": "2026-10-21T21:20:07.000Z",
+      "uid": "35240-fd983cd4-7532-4839-9d14-cc30ce6963e0"
     }
   ],
   "auth": {
@@ -173,25 +170,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "Authorization"
+        "value": "Authorization",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "cc8eb58a-27d9-47fa-9ad7-d1fbb6d42891",
-    "name": "Ledger Analytics Cashflow Models Tasks API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Ledger Analytics API provides remote compute access to Bayesian actuarial models\nfor insurance loss triangles. It is operated by Korra Tech, LLC (d/b/a Korra), a wholly\nowned SaaS subsidiary of Ledger Investing, Inc., and is currently in beta.\n\nLoss triangles are uploaded and managed as first-class `triangle` resources. Development,\ntail, forecast and cashflow models are then fit against a named triangle. Fitting and\nprediction are executed as asynchronous remote tasks: the fit/predict call returns a task\nhandle which is polled at `/tasks/{task_id}` until it completes; predictions are written\nback as new triangle resources.\n\nIMPORTANT PROVENANCE NOTE: Ledger/Korra do not publish an OpenAPI description. This\ndocument was DERIVED by API Evangelist from the request construction in the first-party,\nopen-source `ledger-analytics` Python client (github.com/LedgerInvesting/ledger-analytics,\nMIT-licensed, Copyright 2025 Korra, LLC) and from the published documentation. Paths,\nmethods, auth, request-body field names, pagination parameters and error semantics are\ntaken verbatim from that client. Response schemas are partial — only the fields the\nclient actually reads are described. It is not an authoritative provider artifact.\n\n\nContact Support:\n Name: Ledger Analytics\n Email: analytics@ledgerinvesting.com",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.korra.com/analytics"
     }
-  }
+  ]
 }

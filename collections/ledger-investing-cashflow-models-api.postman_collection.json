@@ -1,119 +1,509 @@
 {
+  "info": {
+    "_postman_id": "93738e6c-b41b-46b8-ae12-98f2726b597a",
+    "name": "Ledger Analytics Cashflow Models API",
+    "description": "The Ledger Analytics API provides remote compute access to Bayesian actuarial models\nfor insurance loss triangles.\n\nContact Support:\n Name: Ledger Analytics\n Email: analytics@ledgerinvesting.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T21:19:43.000Z",
+    "updatedAt": "2026-10-21T21:19:43.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-93738e6c-b41b-46b8-ae12-98f2726b597a"
+  },
   "item": [
     {
-      "id": "97d67365-11c8-4f81-8fac-c6169311b219",
-      "name": "Cashflow Models",
-      "description": {
-        "content": "Cashflow models composed from a fitted development model and tail model.",
-        "type": "text/plain"
-      },
+      "name": "cashflow-model",
       "item": [
         {
-          "id": "7b62a33b-d728-43b4-b71c-ea856684879b",
-          "name": "List cashflow models",
-          "request": {
-            "name": "List cashflow models",
-            "description": {},
-            "url": {
-              "path": [
-                "cashflow-model"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
+          "name": "{id}",
+          "item": [
+            {
+              "name": "predict",
+              "item": [
                 {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "25",
-                  "description": "Maximum number of results to return per page."
+                  "name": "Predict from a cashflow model",
+                  "id": "79b7077d-b40a-4479-b189-6e2d947d0000",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"triangle_name\": \"<string>\",\n  \"prediction_name\": \"<string>\",\n  \"overwrite\": false,\n  \"predict_config\": {\n    \"target_triangle\": \"<string>\",\n    \"initial_loss_name\": \"<string>\",\n    \"laboris0\": \"reprehenderit eu offic\",\n    \"occaecat_bef\": 91887587,\n    \"in5\": \"sit sint culpa\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/cashflow-model/:id/predict",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cashflow-model",
+                        ":id",
+                        "predict"
+                      ],
+                      "variable": [
+                        {
+                          "id": "eace51ac-6ba4-4ec1-9425-bc9a4af59e61",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Identifier of the resource."
+                        }
+                      ]
+                    },
+                    "description": "Runs cashflow prediction. `predict_config.initial_loss_name` optionally names an\ninitial loss triangle to seed the projection."
+                  },
+                  "response": [
+                    {
+                      "id": "e5c0bd7b-3e52-485d-b227-75bbc3a5f61a",
+                      "name": "Predict task accepted.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"triangle_name\": \"<string>\",\n  \"prediction_name\": \"<string>\",\n  \"overwrite\": false,\n  \"predict_config\": {\n    \"target_triangle\": \"<string>\",\n    \"initial_loss_name\": \"<string>\",\n    \"laboris0\": \"reprehenderit eu offic\",\n    \"occaecat_bef\": 91887587,\n    \"in5\": \"sit sint culpa\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/cashflow-model/:id/predict",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "cashflow-model",
+                            ":id",
+                            "predict"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"predictions\": \"<string>\",\n  \"modal_task\": {\n    \"id\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-21T21:19:43.000Z",
+                      "updatedAt": "2026-10-21T21:19:43.000Z",
+                      "uid": "35240-e5c0bd7b-3e52-485d-b227-75bbc3a5f61a"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T21:19:43.000Z",
+                  "updatedAt": "2026-10-21T21:19:43.000Z",
+                  "uid": "35240-79b7077d-b40a-4479-b189-6e2d947d0000"
                 }
               ],
-              "variable": []
+              "id": "b98b675e-3151-4eff-b93a-df5922f558c8",
+              "createdAt": "2026-10-21T21:19:43.000Z",
+              "updatedAt": "2026-10-21T21:19:43.000Z",
+              "uid": "35240-b98b675e-3151-4eff-b93a-df5922f558c8"
             },
+            {
+              "name": "Retrieve a cashflow model",
+              "id": "ca31c0e8-b8f9-426c-b961-26805240fddb",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/cashflow-model/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cashflow-model",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "af6335a9-b25d-4705-a629-043c328e6af8",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Identifier of the resource."
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "a8531714-53d4-4f97-8da4-83adb79d052e",
+                  "name": "The cashflow model.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cashflow-model/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cashflow-model",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"development_model\": \"<string>\",\n  \"tail_model\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T21:19:43.000Z",
+                  "updatedAt": "2026-10-21T21:19:43.000Z",
+                  "uid": "35240-a8531714-53d4-4f97-8da4-83adb79d052e"
+                },
+                {
+                  "id": "42dcc7d6-76d8-4144-beff-85c6aec1297f",
+                  "name": "Not found \u2014 the endpoint or resource does not exist.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cashflow-model/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cashflow-model",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"eiusmod3\": \"ut reprehenderit eu\",\n  \"pariatur_3a3\": false\n}",
+                  "createdAt": "2026-10-21T21:19:43.000Z",
+                  "updatedAt": "2026-10-21T21:19:43.000Z",
+                  "uid": "35240-42dcc7d6-76d8-4144-beff-85c6aec1297f"
+                }
+              ],
+              "createdAt": "2026-10-21T21:19:43.000Z",
+              "updatedAt": "2026-10-21T21:19:43.000Z",
+              "uid": "35240-ca31c0e8-b8f9-426c-b961-26805240fddb"
+            },
+            {
+              "name": "Delete a cashflow model",
+              "id": "8a866925-84fa-432b-a15f-53854d84bd9b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/cashflow-model/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cashflow-model",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "a42816a6-1ac5-4fa2-a533-aebfa59c137e",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Identifier of the resource."
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "db844e64-ae8b-426f-a513-0015262f8c82",
+                  "name": "Cashflow model deleted.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cashflow-model/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cashflow-model",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-21T21:19:43.000Z",
+                  "updatedAt": "2026-10-21T21:19:43.000Z",
+                  "uid": "35240-db844e64-ae8b-426f-a513-0015262f8c82"
+                },
+                {
+                  "id": "ebb7e38c-fa30-4b4d-bee2-e281552f1efb",
+                  "name": "Not found \u2014 the endpoint or resource does not exist.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cashflow-model/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cashflow-model",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"eiusmod3\": \"ut reprehenderit eu\",\n  \"pariatur_3a3\": false\n}",
+                  "createdAt": "2026-10-21T21:19:43.000Z",
+                  "updatedAt": "2026-10-21T21:19:43.000Z",
+                  "uid": "35240-ebb7e38c-fa30-4b4d-bee2-e281552f1efb"
+                }
+              ],
+              "createdAt": "2026-10-21T21:19:43.000Z",
+              "updatedAt": "2026-10-21T21:19:43.000Z",
+              "uid": "35240-8a866925-84fa-432b-a15f-53854d84bd9b"
+            }
+          ],
+          "id": "00859252-58db-4d5b-80cc-3d002382d055",
+          "createdAt": "2026-10-21T21:19:43.000Z",
+          "updatedAt": "2026-10-21T21:19:43.000Z",
+          "uid": "35240-00859252-58db-4d5b-80cc-3d002382d055"
+        },
+        {
+          "name": "List cashflow models",
+          "id": "c3a35ebe-7faf-4086-a84c-4d089f8e8912",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
             "header": [
               {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "GET",
-            "auth": null
+            "url": {
+              "raw": "{{baseUrl}}/cashflow-model?limit=25",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "cashflow-model"
+              ],
+              "query": [
+                {
+                  "description": "Maximum number of results to return per page.",
+                  "key": "limit",
+                  "value": "25"
+                }
+              ]
+            }
           },
           "response": [
             {
-              "id": "61cb5085-df55-4392-ab5e-1063015ed5af",
+              "id": "53e3d9d7-c9ed-4657-b143-4f3af3ac1143",
               "name": "Paginated list of cashflow models.",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "cashflow-model"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "limit",
-                      "value": "25"
-                    }
-                  ],
-                  "variable": []
-                },
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/cashflow-model?limit=25",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cashflow-model"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return per page.",
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"count\": 2378,\n  \"next\": \"string\",\n  \"previous\": \"string\",\n  \"results\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"triangle\": {\n        \"name\": \"string\"\n      },\n      \"modal_task_info\": {\n        \"task_args\": {\n          \"model_type\": \"string\",\n          \"model_config\": {\n            \"key_0\": 5925\n          }\n        }\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"triangle\": {\n        \"name\": \"string\"\n      },\n      \"modal_task_info\": {\n        \"task_args\": {\n          \"model_type\": \"string\",\n          \"model_config\": {\n            \"key_0\": true,\n            \"key_1\": false\n          }\n        }\n      }\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"count\": \"<integer>\",\n  \"next\": \"<string,null>\",\n  \"previous\": \"<string,null>\",\n  \"results\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"triangle\": {\n        \"name\": \"<string>\"\n      },\n      \"modal_task_info\": {\n        \"task_args\": {\n          \"model_type\": \"<string>\",\n          \"model_config\": {\n            \"aliquip_c\": 87357011\n          }\n        }\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"triangle\": {\n        \"name\": \"<string>\"\n      },\n      \"modal_task_info\": {\n        \"task_args\": {\n          \"model_type\": \"<string>\",\n          \"model_config\": {\n            \"eu81a\": -78872328,\n            \"ut378\": \"in\"\n          }\n        }\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-10-21T21:19:43.000Z",
+              "updatedAt": "2026-10-21T21:19:43.000Z",
+              "uid": "35240-53e3d9d7-c9ed-4657-b143-4f3af3ac1143"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-21T21:19:43.000Z",
+          "updatedAt": "2026-10-21T21:19:43.000Z",
+          "uid": "35240-c3a35ebe-7faf-4086-a84c-4d089f8e8912"
         },
         {
-          "id": "81a653d3-8519-4609-801c-af19905154d2",
           "name": "Create a cashflow model",
+          "id": "990295bf-a4a8-43e7-8856-1bad3c685ecb",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Create a cashflow model",
-            "description": {
-              "content": "Composes a cashflow model from a previously fitted development model and tail model, referenced by name.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "cashflow-model"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
+            "method": "POST",
             "header": [
               {
                 "key": "Content-Type",
@@ -124,617 +514,231 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"dev_model_name\": \"<string>\",\n  \"tail_model_name\": \"<string>\",\n  \"model_config\": {\n    \"key_0\": 8826.629635821819,\n    \"key_1\": false,\n    \"key_2\": true,\n    \"key_3\": 855.8210968194313,\n    \"key_4\": \"string\"\n  }\n}",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"dev_model_name\": \"<string>\",\n  \"tail_model_name\": \"<string>\",\n  \"model_config\": {\n    \"sed_2b9\": 64747462\n  }\n}",
               "options": {
                 "raw": {
+                  "headerFamily": "json",
                   "language": "json"
                 }
               }
-            }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/cashflow-model",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "cashflow-model"
+              ]
+            },
+            "description": "Composes a cashflow model from a previously fitted development model and tail model, referenced by name."
           },
           "response": [
             {
-              "id": "367c6e36-d0ca-4ab1-ac26-8098451baa46",
+              "id": "1eb0c589-950d-440e-907b-82b4cb392198",
               "name": "Cashflow model task accepted.",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "cashflow-model"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"dev_model_name\": \"<string>\",\n  \"tail_model_name\": \"<string>\",\n  \"model_config\": {\n    \"key_0\": false\n  }\n}",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"dev_model_name\": \"<string>\",\n  \"tail_model_name\": \"<string>\",\n  \"model_config\": {\n    \"sed_2b9\": 64747462\n  }\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/cashflow-model",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cashflow-model"
+                  ]
                 }
               },
               "status": "Created",
               "code": 201,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"model\": {\n    \"id\": \"string\"\n  },\n  \"modal_task\": {\n    \"id\": \"string\"\n  }\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"model\": {\n    \"id\": \"<string>\"\n  },\n  \"modal_task\": {\n    \"id\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-10-21T21:19:43.000Z",
+              "updatedAt": "2026-10-21T21:19:43.000Z",
+              "uid": "35240-1eb0c589-950d-440e-907b-82b4cb392198"
             },
             {
-              "id": "9706f283-c648-4dee-8e79-9d5bb461bb69",
-              "name": "Bad request — the payload was rejected.",
+              "id": "6fb1d90f-761f-41e9-b6af-35b90208f2e8",
+              "name": "Bad request \u2014 the payload was rejected.",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "cashflow-model"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"dev_model_name\": \"<string>\",\n  \"tail_model_name\": \"<string>\",\n  \"model_config\": {\n    \"key_0\": false\n  }\n}",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"dev_model_name\": \"<string>\",\n  \"tail_model_name\": \"<string>\",\n  \"model_config\": {\n    \"sed_2b9\": 64747462\n  }\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/cashflow-model",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cashflow-model"
+                  ]
                 }
               },
               "status": "Bad Request",
               "code": 400,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"key_0\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"eiusmod3\": \"ut reprehenderit eu\",\n  \"pariatur_3a3\": false\n}",
+              "createdAt": "2026-10-21T21:19:43.000Z",
+              "updatedAt": "2026-10-21T21:19:43.000Z",
+              "uid": "35240-6fb1d90f-761f-41e9-b6af-35b90208f2e8"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "bdb9fe00-916d-4481-8e2c-33f9838b4e06",
-          "name": "List available cashflow model types",
-          "request": {
-            "name": "List available cashflow model types",
-            "description": {},
-            "url": {
-              "path": [
-                "cashflow-model-type"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "63afb664-2ca4-41cf-95b4-46dee72ef171",
-              "name": "Available model types.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "cashflow-model-type"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"key_0\": 595.327919718407\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "d4d86e08-fea4-41b1-8d23-1900ee32c047",
-          "name": "Retrieve a cashflow model",
-          "request": {
-            "name": "Retrieve a cashflow model",
-            "description": {},
-            "url": {
-              "path": [
-                "cashflow-model",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Identifier of the resource."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "fc84836f-acc2-4ace-b4f7-21be57ac1f42",
-              "name": "The cashflow model.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "cashflow-model",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"development_model\": \"string\",\n  \"tail_model\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "8fd066cd-0853-47b5-b8ab-26eb961c8113",
-              "name": "Not found — the endpoint or resource does not exist.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "cashflow-model",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"key_0\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "87fc2610-f2ab-4a3d-b9d4-56abd476b31f",
-          "name": "Delete a cashflow model",
-          "request": {
-            "name": "Delete a cashflow model",
-            "description": {},
-            "url": {
-              "path": [
-                "cashflow-model",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Identifier of the resource."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "026e88fd-1641-4f0c-970b-2eeaefdeb8f9",
-              "name": "Cashflow model deleted.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "cashflow-model",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "e9de2b26-8f35-4cd5-8e3e-9ef0edc8d66b",
-              "name": "Not found — the endpoint or resource does not exist.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "cashflow-model",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"key_0\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "628adff8-420c-4d5c-b10b-ff477395a719",
-          "name": "Predict from a cashflow model",
-          "request": {
-            "name": "Predict from a cashflow model",
-            "description": {
-              "content": "Runs cashflow prediction. `predict_config.initial_loss_name` optionally names an\ninitial loss triangle to seed the projection.\n",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "cashflow-model",
-                ":id",
-                "predict"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Identifier of the resource."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"triangle_name\": \"<string>\",\n  \"prediction_name\": \"<string>\",\n  \"overwrite\": false,\n  \"predict_config\": {\n    \"target_triangle\": \"<string>\",\n    \"initial_loss_name\": \"<string>\"\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "c495077e-48f7-4826-935d-655e63ef775f",
-              "name": "Predict task accepted.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "cashflow-model",
-                    ":id",
-                    "predict"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"triangle_name\": \"string\",\n  \"prediction_name\": \"string\",\n  \"overwrite\": false,\n  \"predict_config\": {\n    \"target_triangle\": \"string\",\n    \"initial_loss_name\": \"<string>\",\n    \"key_0\": 4388.203298257133,\n    \"key_1\": 7722.970051337792\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"predictions\": \"string\",\n  \"modal_task\": {\n    \"id\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-21T21:19:43.000Z",
+          "updatedAt": "2026-10-21T21:19:43.000Z",
+          "uid": "35240-990295bf-a4a8-43e7-8856-1bad3c685ecb"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
+      "id": "8b501955-f325-4149-a90c-7a64e61e7e17",
+      "createdAt": "2026-10-21T21:19:43.000Z",
+      "updatedAt": "2026-10-21T21:19:43.000Z",
+      "uid": "35240-8b501955-f325-4149-a90c-7a64e61e7e17"
+    },
     {
-      "type": "string",
-      "value": "https://api.korra.com/analytics",
-      "key": "baseUrl"
+      "name": "cashflow-model-type",
+      "item": [
+        {
+          "name": "List available cashflow model types",
+          "id": "413a7815-45d2-4883-b324-7dae2cc21419",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/cashflow-model-type",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "cashflow-model-type"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "224d8060-2c61-4bee-b219-608be78dc0b7",
+              "name": "Available model types.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/cashflow-model-type",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cashflow-model-type"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"minim_ba1\": true,\n  \"nulla2\": -57030853.508903824,\n  \"magna_b\": \"minim dolore reprehenderit incididunt\",\n  \"exercitation9\": -86362380.84288874\n}",
+              "createdAt": "2026-10-21T21:19:43.000Z",
+              "updatedAt": "2026-10-21T21:19:43.000Z",
+              "uid": "35240-224d8060-2c61-4bee-b219-608be78dc0b7"
+            }
+          ],
+          "createdAt": "2026-10-21T21:19:43.000Z",
+          "updatedAt": "2026-10-21T21:19:43.000Z",
+          "uid": "35240-413a7815-45d2-4883-b324-7dae2cc21419"
+        }
+      ],
+      "id": "656f1e98-5c9d-4d4d-b920-598309b3c1cf",
+      "createdAt": "2026-10-21T21:19:43.000Z",
+      "updatedAt": "2026-10-21T21:19:43.000Z",
+      "uid": "35240-656f1e98-5c9d-4d4d-b920-598309b3c1cf"
     }
   ],
   "auth": {
@@ -742,25 +746,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "Authorization"
+        "value": "Authorization",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "db4ce4f1-69b3-4ba6-9d38-2c51ad47905d",
-    "name": "Ledger Analytics Cashflow Models API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Ledger Analytics API provides remote compute access to Bayesian actuarial models\nfor insurance loss triangles. It is operated by Korra Tech, LLC (d/b/a Korra), a wholly\nowned SaaS subsidiary of Ledger Investing, Inc., and is currently in beta.\n\nLoss triangles are uploaded and managed as first-class `triangle` resources. Development,\ntail, forecast and cashflow models are then fit against a named triangle. Fitting and\nprediction are executed as asynchronous remote tasks: the fit/predict call returns a task\nhandle which is polled at `/tasks/{task_id}` until it completes; predictions are written\nback as new triangle resources.\n\nIMPORTANT PROVENANCE NOTE: Ledger/Korra do not publish an OpenAPI description. This\ndocument was DERIVED by API Evangelist from the request construction in the first-party,\nopen-source `ledger-analytics` Python client (github.com/LedgerInvesting/ledger-analytics,\nMIT-licensed, Copyright 2025 Korra, LLC) and from the published documentation. Paths,\nmethods, auth, request-body field names, pagination parameters and error semantics are\ntaken verbatim from that client. Response schemas are partial — only the fields the\nclient actually reads are described. It is not an authoritative provider artifact.\n\n\nContact Support:\n Name: Ledger Analytics\n Email: analytics@ledgerinvesting.com",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.korra.com/analytics"
     }
-  }
+  ]
 }
