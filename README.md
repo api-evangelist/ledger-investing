@@ -64,18 +64,134 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Ledger Investing is a New York-based specialist broking and advisory firm for casualty insurance-linked securities (ILS), connecting insurers, reinsurers and fronting carriers to institutional capital. The firm has securitized more than $2.5 billion of casualty premium across 170+ transactions since graduating Y Combinator in 2017.
+Ledger Investing is a New York-based specialist broking and advisory firm for casualty insurance-linked securities (ILS), connecting insurers, reinsurers and fronting carriers to institutional capital markets investors. The firm originates casualty risk, structures off-balance-sheet solutions, brokes and distributes the resulting securities, and supports secondary trading, having securitized more than $2.5 billion of casualty premium across 170+ transactions since graduating Y Combinator in 2017. Its wholly owned SaaS subsidiary Korra Tech, LLC operates the Korra open data and analytics platform for the reinsurance and ILS market, whose Ledger Analytics API gives actuaries programmatic remote-compute access to Bayesian loss development, tail and forecasting models over insurance loss triangles, alongside the open-source Bermuda (loss triangle manipulation) and BayesBlend (Bayesian model stacking) Python libraries. Other subsidiaries include Ledger Capital Markets, LLC (SEC-registered broker-dealer, FINRA/SIPC member) and Ledger Risk Markets, LLC (licensed reinsurance intermediary).
 
-Its wholly owned SaaS subsidiary Korra Tech, LLC operates the Korra data and analytics platform for the reinsurance and ILS market. The **Ledger Analytics API** (`https://api.korra.com/analytics/`, currently in beta) gives actuaries remote compute access to Bayesian loss development, tail and forecasting models over insurance loss triangles, alongside the open-source Bermuda and BayesBlend Python libraries.
+**Areas:** Company · Insurance Tech · Insurance · Reinsurance · Insurance-Linked Securities · Actuarial · Analytics · Capital Markets · Data Science · Financial Services
 
-- Website — https://www.ledgerinvesting.com/
-- Korra — https://www.korra.com
-- Analytics API documentation — https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/index.html
-- GitHub — https://github.com/LedgerInvesting
-- Trust center — https://trust.korra.com
+## Ledger Investing on APIs.io
 
-Backed by: accel
+Everything profiled for Ledger Investing is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/ledger-investing/](https://apis.io/providers/ledger-investing/)** — or go straight to one of the APIs or properties below.
 
-## Note on the OpenAPI
+### APIs (6)
 
-Ledger/Korra publish no OpenAPI description. `openapi/ledger-investing-analytics-openapi.yml` was **derived** by API Evangelist from the request construction in the first-party, MIT-licensed open-source `ledger-analytics` Python client and from the published documentation. It is not an authoritative provider artifact.
+- [Ledger Investing Cashflow Models API](https://apis.io/apis/ledger-investing/ledger-investing-cashflow-models-api/) — Cashflow models composed from a fitted development model and tail model.
+- [Ledger Investing Development Models API](https://apis.io/apis/ledger-investing/ledger-investing-development-models-api/) — Bayesian loss development models (ChainLadder, TraditionalChainLadder, ManualATA, MeyersCRC, GMCL).
+- [Ledger Investing Forecast Models API](https://apis.io/apis/ledger-investing/ledger-investing-forecast-models-api/) — Forecasting models (AR1, SSM, TraditionalGCC).
+- [Ledger Investing Tail Models API](https://apis.io/apis/ledger-investing/ledger-investing-tail-models-api/) — Tail development models (GeneralizedBondy, Sherman, ClassicalPowerTransformTail).
+- [Ledger Investing Tasks API](https://apis.io/apis/ledger-investing/ledger-investing-tasks-api/) — Poll the status of asynchronous fit and predict tasks.
+- [Ledger Investing Triangles API](https://apis.io/apis/ledger-investing/ledger-investing-triangles-api/) — Upload, list, retrieve and delete insurance loss triangles.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [ledger-analytics](https://apis.io/servers/ledger-investing/ledger-analytics/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Ledger Investing Agentic Access](https://apis.io/agentic-access/ledger-investing/ledger-investing-agentic-access/)
+
+#### Collections (6)
+
+Postman and Open Collection request collections.
+
+- [Ledger Analytics Cashflow Models API](https://apis.io/collections/ledger-investing/open-ledger-investing-cashflow-models-api/)
+- [Ledger Analytics Cashflow Models Development Models API](https://apis.io/collections/ledger-investing/open-ledger-investing-development-models-api/)
+- [Ledger Analytics Cashflow Models Forecast Models API](https://apis.io/collections/ledger-investing/open-ledger-investing-forecast-models-api/)
+- [Ledger Analytics Cashflow Models Tail Models API](https://apis.io/collections/ledger-investing/open-ledger-investing-tail-models-api/)
+- [Ledger Analytics Cashflow Models Tasks API](https://apis.io/collections/ledger-investing/open-ledger-investing-tasks-api/)
+- [Ledger Analytics Cashflow Models Triangles API](https://apis.io/collections/ledger-investing/open-ledger-investing-triangles-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Ledger Investing Analytics Overlay](https://apis.io/overlays/ledger-investing/ledger-investing-analytics-overlay/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Ledger Investing Authentication](https://apis.io/security/ledger-investing/ledger-investing-authentication/)
+- [Ledger Investing Domain Security](https://apis.io/security/ledger-investing/ledger-investing-domain-security/)
+- [Ledger Investing Trust Center](https://apis.io/security/ledger-investing/ledger-investing-trust-center/)
+- [Ledger Investing Vulnerability Disclosure](https://apis.io/security/ledger-investing/ledger-investing-vulnerability-disclosure/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.ledgerinvesting.com/)
+- [Documentation](https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/index.html)
+- [Getting started](https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/quickstart.html)
+- [API reference](https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/api/index.html)
+- [Pricing](https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/pricing.html)
+- [Sign up](https://ledger-investing-ledger-analytics.readthedocs-hosted.com/en/stable/apikeys.html)
+- [Support](https://www.ledgerinvesting.com/contact-us)
+- [Blog](https://www.ledgerinvesting.com/news)
+- [Security](https://trust.korra.com)
+- [Compliance](https://trust.korra.com)
+- [Terms of service](https://www.ledgerinvesting.com/terms-of-use)
+- [Privacy policy](https://www.ledgerinvesting.com/privacy)
+- [GitHub](https://github.com/LedgerInvesting)
+
+## API Evangelist rating
+
+**Kin Score 50.5** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 49.1 |
+| Contract governance | 18.2 |
+| Operational transparency | 28.9 |
+| Developer ergonomics | 67.3 |
+| Access clarity | 60.5 |
+
+**Agent readiness 20.6** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 31.6** — Insurance
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/ledger-investing/](https://apis.io/providers/ledger-investing/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Ledger Investing: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/ledger-investing/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
